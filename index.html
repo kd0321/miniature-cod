@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Roll Studios</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e3b2e; /* GREEN HOMEPAGE */
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    /* TITLE + IMAGE CONTAINER */
+    .title-wrap {
+      position: relative;
+      display: inline-block;
+      padding: 40px 60px;
+    }
+
+    /* IMAGE BEHIND TITLE */
+    .title-wrap img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 240px;        /* BIG so you SEE it */
+      width: auto;
+      opacity: 0.6;         /* visible */
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* TITLE TEXT */
+    .title-wrap h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 3.2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      color: #cde7db;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 70px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 22px;
+      border-left: 4px solid #8dffb3;
+      padding-left: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 20px;
+      min-height: 180px;
+    }
+
+    .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      border: 2px dashed #6bd6a2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: #9be5c3;
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #bfe9d5;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1f5a46;
+      color: #bfe9d5;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="title-wrap">
+      <!-- THIS IS THE IMAGE YOU WERE ASKING FOR -->
+      <img src="images/chooru.png" alt="Sweet Roll Studios Emblem">
+
+      <h1>Sweet Roll Studios</h1>
+    </div>
+    <p>Original stories • Animation • Digital worlds</p>
+  </header>
+
+  <main>
+    <h2 class="section-title">Features In Progress</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon">Cover</div>
+        <h3>Virtual Book Title #1</h3>
+        <p>Placeholder for your first illustrated story.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">Cover</div>
+        <h3>Virtual Book Title #2</h3>
+        <p>Placeholder for your second illustrated story.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">Cover</div>
+        <h3>Virtual Book Title #3</h3>
+        <p>Placeholder for your third illustrated story.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Sweet Roll Studios
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
