@@ -121,14 +121,17 @@
       font-size: 0.9rem;
     }
 
-    .book-cover {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 14px;
-      border: 1px solid #1f5a46;
-    }
+.book-cover {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;   /* SHOW ENTIRE IMAGE */
+  background: #0e3b2e;   /* fills empty space */
+  border-radius: 12px;
+  margin-bottom: 14px;
+  border: 1px solid #1f5a46;
+  padding: 10px;         /* optional breathing room */
+}
+
 
   </style>
 </head>
@@ -155,8 +158,8 @@
     alt="Virtual Book Title 1 Cover" 
     class="book-cover"
   >
-        <h3>Virtual Book Title #1</h3>
-        <p>Placeholder for your first illustrated story.</p>
+        <h3>Core Protocol</h3>
+        <p>Those who fail to control their core become liabilities, not legends.</p>
       </div>
 
       <div class="card">
@@ -165,11 +168,7 @@
         <p>Placeholder for your second illustrated story.</p>
       </div>
 
-      <div class="card">
-        <div class="icon">Cover</div>
-        <h3>Virtual Book Title #3</h3>
-        <p>Placeholder for your third illustrated story.</p>
-      </div>
+      
     </div>
   </main>
 
