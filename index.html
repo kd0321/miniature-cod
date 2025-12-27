@@ -6,17 +6,17 @@
   <title>Sweet Roll Studios</title>
 
   <style>
-    /* ========== RESET ========== */
+    /* ===== RESET ===== */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /* ========== BASE ========== */
+    /* ===== BASE ===== */
     body {
       font-family: Arial, sans-serif;
-      background: #0e3b2e; /* GREEN HOMEPAGE */
+      background: #0e3b2e;
       color: #f5f5f5;
       min-height: 100vh;
     }
@@ -40,7 +40,7 @@
       font-size: 0.9rem;
     }
 
-    /* ========== TITLE AREA ========== */
+    /* ===== TITLE ===== */
     .title-wrap {
       position: relative;
       display: inline-block;
@@ -53,7 +53,6 @@
       left: 50%;
       transform: translate(-50%, -50%);
       height: 240px;
-      width: auto;
       opacity: 0.6;
       z-index: 0;
       pointer-events: none;
@@ -66,8 +65,8 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       text-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.7),
-        0 0 20px rgba(0, 0, 0, 0.4);
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
     }
 
     header p {
@@ -76,7 +75,7 @@
       color: #cde7db;
     }
 
-    /* ========== SECTION + GRID ========== */
+    /* ===== GRID ===== */
     .section-title {
       font-size: 1.6rem;
       margin-bottom: 22px;
@@ -86,26 +85,23 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
     }
 
-    /* ========== CARD ========== */
+    /* ===== CARD ===== */
     .card {
       background: #102e24;
       border: 1px solid #1f5a46;
       border-radius: 16px;
       padding: 20px;
-      min-height: 180px;
-
-      /* keeps spacing consistent between book 1 + book 2 */
       display: flex;
       flex-direction: column;
     }
 
     .card h3 {
       font-size: 1.15rem;
-      margin: 10px 0 8px;
+      margin: 12px 0 8px;
     }
 
     .card p {
@@ -114,73 +110,86 @@
       line-height: 1.4;
     }
 
-    /* ========== BOOK COVER (SAME VIEW FOR BOTH) ========== */
+    /* ===== BOOK 1 COVER (FILLS BOX) ===== */
     .book-cover {
       width: 100%;
       height: 260px;
       border-radius: 12px;
       border: 1px solid #1f5a46;
       margin-bottom: 14px;
-
-      /* identical cropping behavior for both covers */
       object-fit: cover;
       object-position: center;
       display: block;
     }
 
-    /* Zoomed-out view for second book only */
-/* FORCE full image visibility — extreme zoom out */
-.book-cover--full {
-  object-fit: contain;      /* show entire image */
-  object-position: center;
-  background: #0e3b2e;
+    /* ===== BOOK 2 COVER (FITS BOX + LOOKS CLEAN) ===== */
+    .book-cover-frame {
+      width: 100%;
+      height: 260px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      margin-bottom: 14px;
+      background: #0e3b2e;
 
-  /* this is the key */
-  transform: scale(0.25);   /* 4x zoomed out */
-  transform-origin: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  /* prevent layout break */
-  width: 100%;
-  height: 260px;
-}
+      /* keeps it looking "put together" */
+      overflow: hidden;
+      padding: 18px; /* gives zoom-out while still filling nicely */
+    }
 
-
+    .book-cover-fit {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px; /* matches inner padding look */
+      object-fit: contain; /* FULL IMAGE VISIBLE */
+      object-position: center;
+      display: block;
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="title-wrap">
-      <img src="images/chooru.png" alt="Sweet Roll Studios Emblem" />
-      <h1>Sweet Roll Studios</h1>
+
+<header>
+  <div class="title-wrap">
+    <img src="images/chooru.png" alt="Sweet Roll Studios Emblem">
+    <h1>Sweet Roll Studios</h1>
+  </div>
+  <p>Original stories • Animation • Digital worlds</p>
+</header>
+
+<main>
+  <h2 class="section-title">Features In Progress</h2>
+
+  <div class="grid">
+    <!-- BOOK 1 -->
+    <div class="card">
+      <img src="images/core1.png" alt="Core Protocol Cover" class="book-cover">
+      <h3>Core Protocol</h3>
+      <p>Those who fail to control their core become liabilities, not legends.</p>
     </div>
-    <p>Original stories • Animation • Digital worlds</p>
-  </header>
 
-  <main>
-    <h2 class="section-title">Features In Progress</h2>
-
-    <div class="grid">
-      <div class="card">
-        <img src="images/core1.png" alt="Virtual Book Title 1 Cover" class="book-cover" />
-        <h3>Core Protocol</h3>
-        <p>Those who fail to control their core become liabilities, not legends.</p>
+    <!-- BOOK 2 (FIXED) -->
+    <div class="card">
+      <div class="book-cover-frame">
+        <img src="images/blackout1.png" alt="Blackout States Cover" class="book-cover-fit">
       </div>
-
-      <div class="card">
-        <img src="images/blackout1.png" alt="Virtual Book Title 2 Cover" class="book-cover" />
-        <h3>Blackout States</h3>
-        <p>Placeholder for your second illustrated story.</p>
-      </div>
+      <h3>Blackout States</h3>
+      <p>Placeholder for your second illustrated story.</p>
     </div>
-  </main>
+  </div>
+</main>
 
-  <footer>
-    © <span id="year"></span> Sweet Roll Studios
-  </footer>
+<footer>
+  © <span id="year"></span> Sweet Roll Studios
+</footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
