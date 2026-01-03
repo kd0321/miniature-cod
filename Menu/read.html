@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merch | Sweet Roll Studios</title>
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== BASE ===== */
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e3b2e;
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 90px 20px 40px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 70px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1f5a46;
+      color: #bfe9d5;
+      font-size: 0.9rem;
+    }
+
+    /* ===== TITLE ===== */
+    .title-wrap {
+      position: relative;
+      display: inline-block;
+      padding: 28px 44px;
+    }
+
+    .title-wrap img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 200px;
+      opacity: 0.55;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .title-wrap h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 2.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      color: #cde7db;
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-size: 1.5rem;
+      margin: 26px 0 18px;
+      border-left: 4px solid #8dffb3;
+      padding-left: 12px;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-top: 6px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #bfe9d5;
+      line-height: 1.4;
+    }
+
+    /* ===== PRODUCT IMAGE ===== */
+    .product-img {
+      width: 100%;
+      height: 190px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.25);
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-placeholder {
+      width: 100%;
+      height: 190px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.25);
+      display: grid;
+      place-items: center;
+      color: #cde7db;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* ===== PRICE + CTA ===== */
+    .price {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #8dffb3;
+      margin-top: 4px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 6px;
+      background: #144235;
+      border: 1px solid #1f5a46;
+      color: #f5f5f5;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .btn:hover { background: #1f5a46; }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 16px;
+      color: #bfe9d5;
+      line-height: 1.5;
+    }
+    .info-box strong { color: #f5f5f5; }
+
+    /* ===== TOP LEFT LARGE MENU ===== */
+    .menu-container {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 999;
+    }
+
+    .menu-btn {
+      background: #102e24;
+      color: #f5f5f5;
+      border: 1px solid #1f5a46;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .menu-btn:hover { background: #144235; }
+
+    .menu-dropdown {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      min-width: 230px;
+      display: none;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .menu-dropdown a {
+      display: block;
+      padding: 14px 20px;
+      color: #bfe9d5;
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .menu-dropdown a:hover {
+      background: #1f5a46;
+      color: #ffffff;
+    }
+
+    @media (max-width: 520px) {
+      header { padding-top: 110px; }
+      .menu-btn { padding: 12px 18px; font-size: 1rem; }
+      .title-wrap h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== MENU (TOP LEFT) ===== -->
+  <div class="menu-container">
+    <button class="menu-btn" type="button">MENU</button>
+
+    <div class="menu-dropdown">
+      <a href="index.html">Home</a>
+      <a href="clips.html">Clips</a>
+      <a href="read.html">Read</a>
+      <a href="watch.html">Watch</a>
+      <a href="merch.html">Merch</a>
+      <a href="socials.html">Socials</a>
+      <a href="world.html">World</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="title-wrap">
+      <img src="images/chooru.png" alt="Sweet Roll Studios Emblem">
+      <h1>Merch</h1>
+    </div>
+    <p>Print-on-demand • collectibles • drops • limited designs</p>
+  </header>
+
+  <main>
+    <h2 class="section-title">Featured Merch</h2>
+
+    <div class="grid">
+      <!-- PRODUCT 1 -->
+      <div class="card">
+        <div class="img-placeholder">Add Product Image<br>(e.g. images/merch-shirt1.png)</div>
+        <h3>Core Protocol Tee</h3>
+        <p>Clean front logo or character silhouette. Minimal, premium feel.</p>
+        <div class="price">$29.99</div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Buy / View</a>
+      </div>
+
+      <!-- PRODUCT 2 -->
+      <div class="card">
+        <div class="img-placeholder">Add Product Image</div>
+        <h3>Blackout States Poster</h3>
+        <p>High-res poster print. Perfect for wall setup or studio vibes.</p>
+        <div class="price">$24.99</div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Buy / View</a>
+      </div>
+
+      <!-- PRODUCT 3 -->
+      <div class="card">
+        <div class="img-placeholder">Add Product Image</div>
+        <h3>Sticker Pack</h3>
+        <p>Logo + character icons + symbols. Easy add-on for every drop.</p>
+        <div class="price">$7.99</div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Buy / View</a>
+      </div>
+    </div>
+
+    <h2 class="section-title">Drops & Notes</h2>
+    <div class="info-box">
+      <p><strong>Drop Schedule:</strong> Use this section to announce when new merch goes live.</p>
+      <p><strong>Shipping:</strong> If you’re using print-on-demand, add the average shipping time here.</p>
+      <p><strong>Returns:</strong> Add a simple policy statement (or link to a policy page later).</p>
+      <p><strong>Custom Requests:</strong> If you want, add “DM on socials” or a contact email.</p>
+    </div>
+
+    <h2 class="section-title">Coming Soon</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="img-placeholder">Coming Soon</div>
+        <h3>Hoodies</h3>
+        <p>Heavyweight hoodie with embroidered-style design.</p>
+        <div class="price">TBD</div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Notify Me</a>
+      </div>
+
+      <div class="card">
+        <div class="img-placeholder">Coming Soon</div>
+        <h3>Character Keychains</h3>
+        <p>Acrylic keychains with character variants and symbols.</p>
+        <div class="price">TBD</div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Notify Me</a>
+      </div>
+
+      <div class="card">
+        <div class="img-placeholder">Coming Soon</div>
+        <h3>Limited Prints</h3>
+        <p>Signed or numbered art prints for collectors.</p>
+        <div class="price">TBD</div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Notify Me</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Sweet Roll Studios
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Menu
+      const menuBtn = document.querySelector(".menu-btn");
+      const menuDropdown = document.querySelector(".menu-dropdown");
+
+      if (!menuBtn || !menuDropdown) return;
+
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menuDropdown.style.display =
+          (menuDropdown.style.display === "block") ? "none" : "block";
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".menu-container")) {
+          menuDropdown.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

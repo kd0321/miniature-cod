@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clips | Sweet Roll Studios</title>
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== BASE ===== */
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e3b2e;
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 90px 20px 40px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 70px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1f5a46;
+      color: #bfe9d5;
+      font-size: 0.9rem;
+    }
+
+    /* ===== TITLE ===== */
+    .title-wrap {
+      position: relative;
+      display: inline-block;
+      padding: 28px 44px;
+    }
+
+    .title-wrap img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 200px;
+      opacity: 0.55;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .title-wrap h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 2.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      color: #cde7db;
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-size: 1.5rem;
+      margin: 26px 0 18px;
+      border-left: 4px solid #8dffb3;
+      padding-left: 12px;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-top: 6px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #bfe9d5;
+      line-height: 1.4;
+    }
+
+    /* ===== VIDEO PLACEHOLDER ===== */
+    .video-box {
+      width: 100%;
+      height: 190px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.25);
+      display: grid;
+      place-items: center;
+      color: #cde7db;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* If you use <video> */
+    video.clip-video {
+      width: 100%;
+      height: 190px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.25);
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ===== BUTTON/LINK ===== */
+    .btn {
+      display: inline-block;
+      margin-top: 6px;
+      background: #144235;
+      border: 1px solid #1f5a46;
+      color: #f5f5f5;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .btn:hover { background: #1f5a46; }
+
+    /* ===== TOP LEFT LARGE MENU ===== */
+    .menu-container {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 999;
+    }
+
+    .menu-btn {
+      background: #102e24;
+      color: #f5f5f5;
+      border: 1px solid #1f5a46;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .menu-btn:hover { background: #144235; }
+
+    .menu-dropdown {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      min-width: 230px;
+      display: none;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .menu-dropdown a {
+      display: block;
+      padding: 14px 20px;
+      color: #bfe9d5;
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .menu-dropdown a:hover {
+      background: #1f5a46;
+      color: #ffffff;
+    }
+
+    /* ===== SOCIALS LIST ===== */
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .social-item {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .social-item h4 { font-size: 1.05rem; margin-bottom: 6px; }
+    .social-item p { color: #bfe9d5; font-size: 0.95rem; line-height: 1.4; }
+    .social-item a { color: #8dffb3; text-decoration: none; }
+    .social-item a:hover { text-decoration: underline; }
+
+    /* Small screens */
+    @media (max-width: 520px) {
+      header { padding-top: 110px; }
+      .menu-btn { padding: 12px 18px; font-size: 1rem; }
+      .title-wrap h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== MENU (TOP LEFT) ===== -->
+  <div class="menu-container">
+    <button class="menu-btn" type="button">MENU</button>
+
+    <div class="menu-dropdown">
+      <a href="index.html">Home</a>
+      <a href="clips.html">Clips</a>
+      <a href="read.html">Read</a>
+      <a href="watch.html">Watch</a>
+      <a href="merch.html">Merch</a>
+      <a href="socials.html">Socials</a>
+      <a href="world.html">World</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="title-wrap">
+      <img src="images/chooru.png" alt="Sweet Roll Studios Emblem">
+      <h1>Clips</h1>
+    </div>
+    <p>Short animations • teasers • behind-the-scenes • highlights</p>
+  </header>
+
+  <main>
+    <h2 class="section-title">Latest Clips</h2>
+
+    <div class="grid">
+      <!-- CLIP CARD 1 (placeholder) -->
+      <div class="card">
+        <div class="video-box">
+          Drop a clip here<br>
+          (YouTube embed or &lt;video&gt;)
+        </div>
+        <h3>Clip Title #1</h3>
+        <p>One sentence about what happens in this clip. Keep it punchy.</p>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Watch Full</a>
+      </div>
+
+      <!-- CLIP CARD 2 (example using <video>) -->
+      <div class="card">
+        <!-- Replace src with your file path, e.g. videos/clip2.mp4 -->
+        <video class="clip-video" controls preload="metadata">
+          <source src="videos/clip2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <h3>Clip Title #2</h3>
+        <p>Quick description. If it’s a teaser, say what series it belongs to.</p>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">More Like This</a>
+      </div>
+
+      <!-- CLIP CARD 3 (placeholder) -->
+      <div class="card">
+        <div class="video-box">Clip Placeholder</div>
+        <h3>Clip Title #3</h3>
+        <p>Placeholder text until you paste the real clip links.</p>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Open</a>
+      </div>
+    </div>
+
+    <h2 class="section-title">Socials</h2>
+
+    <div class="socials">
+      <div class="social-item">
+        <h4>Instagram</h4>
+        <p>Post teasers + character panels + release updates.</p>
+        <p><a href="#" target="_blank" rel="noreferrer">Add your Instagram link</a></p>
+      </div>
+
+      <div class="social-item">
+        <h4>TikTok</h4>
+        <p>Short clips + memes + behind-the-scenes edits.</p>
+        <p><a href="#" target="_blank" rel="noreferrer">Add your TikTok link</a></p>
+      </div>
+
+      <div class="social-item">
+        <h4>YouTube</h4>
+        <p>Longer compilations, trailers, and episode drops.</p>
+        <p><a href="#" target="_blank" rel="noreferrer">Add your YouTube link</a></p>
+      </div>
+
+      <div class="social-item">
+        <h4>X / Twitter</h4>
+        <p>Announcements, lore threads, and quick updates.</p>
+        <p><a href="#" target="_blank" rel="noreferrer">Add your X link</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Sweet Roll Studios
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Menu
+      const menuBtn = document.querySelector(".menu-btn");
+      const menuDropdown = document.querySelector(".menu-dropdown");
+
+      if (!menuBtn || !menuDropdown) return;
+
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menuDropdown.style.display =
+          (menuDropdown.style.display === "block") ? "none" : "block";
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".menu-container")) {
+          menuDropdown.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
