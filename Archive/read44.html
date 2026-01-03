@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manga/Series | Sweet Roll Studios</title>
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ===== BASE (READ11 GREEN) ===== */
+    :root{
+      --bg: #0e3b2e;
+      --panel: #102e24;
+      --panel2: rgba(0,0,0,0.12);
+      --line: #1f5a46;
+      --text: #f5f5f5;
+      --muted: #bfe9d5;
+      --muted2:#cde7db;
+      --accent: #8dffb3;
+      --shadow: 0 10px 30px rgba(0,0,0,0.6);
+      --radius: 16px;
+    }
+
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header{
+      text-align: center;
+      padding: 90px 20px 26px;
+    }
+
+    main{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 20px 70px;
+    }
+
+    footer{
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== TITLE (READ11 STYLE) ===== */
+    .title-wrap{
+      position: relative;
+      display: inline-block;
+      padding: 28px 44px;
+    }
+
+    .title-wrap img{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 200px;
+      opacity: 0.55;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .title-wrap h1{
+      position: relative;
+      z-index: 1;
+      font-size: 2.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    header p{
+      margin-top: 10px;
+      font-size: 1.05rem;
+      color: var(--muted2);
+    }
+
+    /* ===== TOP LEFT LARGE MENU (READ11) ===== */
+    .menu-container{
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 999;
+    }
+
+    .menu-btn{
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .menu-btn:hover{ background: #144235; }
+
+    .menu-dropdown{
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      min-width: 230px;
+      display: none;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-dropdown a{
+      display:block;
+      padding: 14px 20px;
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    .menu-dropdown a:hover{
+      background: var(--line);
+      color: #ffffff;
+    }
+
+    /* ===== "MANGA PLUS" STYLE TABS/CONTROLS (MERGED, GREEN) ===== */
+    .bar{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      margin-top: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .bar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .crumbs{
+      font-size: 0.95rem;
+      color: var(--muted);
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+    .crumbs a{ color: var(--muted); }
+    .crumbs a:hover{ color: var(--text); }
+    .crumbs .sep{ opacity: .8; }
+
+    .tabs{
+      display:flex;
+      gap: 22px;
+      align-items:center;
+      justify-content:center;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .tab{
+      position: relative;
+      color: var(--muted);
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding: 10px 2px;
+      cursor: pointer;
+      user-select: none;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    .tab[aria-selected="true"]{ color: var(--text); }
+
+    .tab[aria-selected="true"]::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-6px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    .controls{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .select{
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: bold;
+      outline: none;
+      letter-spacing: .5px;
+    }
+
+    /* ===== GRID (BIG COVERS LIKE READ3, BUT GREEN) ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 28px 22px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 1000px){
+      .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px){
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px){
+      header{ padding-top: 110px; }
+      .menu-btn{ padding: 12px 18px; font-size: 1rem; }
+      .title-wrap h1{ font-size: 2.2rem; }
+      .grid{ grid-template-columns: repeat(1, minmax(0, 1fr)); }
+      .tabs{ min-width: 100%; justify-content: center; }
+      .controls{ width: 100%; justify-content: center; }
+    }
+
+    .card{ min-width: 0; }
+
+    .card a{ display:block; }
+
+    .cover{
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(180px 200px at 30% 28%, rgba(141,255,179,0.20), transparent 60%),
+        rgba(0,0,0,0.22);
+      overflow:hidden;
+      box-shadow: 0 18px 34px rgba(0,0,0,0.40);
+      display:grid;
+      place-items:center;
+      color: var(--muted2);
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-align:center;
+      padding: 14px;
+    }
+
+    .cover img{ width:100%; height:100%; object-fit: cover; }
+
+    .meta{
+      padding-top: 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .name{
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      line-height: 1.15;
+      display:-webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+
+    .chapter{
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .langs{
+      margin-top: 2px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lang{
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+    }
+
+    .empty{
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card a:hover .cover{
+      transform: translateY(-2px);
+      transition: transform .12s ease;
+      border-color: #2a7a60;
+    }
+
+    .card a:focus-visible, .tab:focus-visible, .menu-btn:focus-visible, .select:focus-visible{
+      outline: 2px solid rgba(141,255,179,0.85);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== MENU (TOP LEFT) ===== -->
+  <div class="menu-container">
+    <button class="menu-btn" type="button" id="menuBtn">MENU</button>
+
+    <div class="menu-dropdown" id="menuDropdown">
+      <a href="/index.html">Home</a>
+      <a href="clips.html">Clips</a>
+      <a href="read.html">Read</a>
+      <a href="watch.html">Watch</a>
+      <a href="merch.html">Merch</a>
+      <a href="socials.html">Socials</a>
+      <a href="world.html">World</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="title-wrap">
+      <img src="/images/chooru.png" alt="Sweet Roll Studios Emblem">
+      <h1>Manga/Series</h1>
+    </div>
+    <p>Ongoing • completed • one-shot</p>
+  </header>
+
+  <main>
+    <!-- Tabs/controls + breadcrumb (read3 content in read11 styling) -->
+    <div class="bar">
+      <div class="bar-inner">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="#" id="crumbHome">home</a>
+          <span class="sep">›</span>
+          <span id="crumbSection">ongoing</span>
+        </nav>
+
+        <div class="tabs" role="tablist" aria-label="Manga list sections">
+          <div class="tab" role="tab" tabindex="0" aria-selected="true" data-tab="ongoing">Ongoing</div>
+          <div class="tab" role="tab" tabindex="0" aria-selected="false" data-tab="completed">Completed</div>
+          <div class="tab" role="tab" tabindex="0" aria-selected="false" data-tab="oneshot">One-shot</div>
+        </div>
+
+        <div class="controls">
+          <select class="select" id="sortSelect" aria-label="Sort">
+            <option value="az">A to Z</option>
+            <option value="za">Z to A</option>
+            <option value="recent" selected>Most Recent</option>
+          </select>
+          <select class="select" id="filterSelect" aria-label="Filter">
+            <option value="all" selected>Filter</option>
+            <option value="core">Core Protocol</option>
+            <option value="blackout">Black Out States</option>
+            <option value="crashhouse">Content Crashhouse</option>
+            <option value="crankhouse">Crank House Shorts</option>
+            <option value="battleworld">Battle World</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">No titles in this section yet.</div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Sweet Roll Studios
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Menu
+      const menuBtn = document.getElementById("menuBtn");
+      const menuDropdown = document.getElementById("menuDropdown");
+
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menuDropdown.style.display = (menuDropdown.style.display === "block") ? "none" : "block";
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".menu-container")) menuDropdown.style.display = "none";
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") menuDropdown.style.display = "none";
+      });
+
+      // ===== DATA (from read3) =====
+      // One chapter per card. No author/pen name shown.
+      // cover: set to "covers/yourfile.png" when ready. If blank, shows placeholder.
+      const DATA = {
+        ongoing: [
+          { id:'core-ch1', series:'core', title:'Core Protocol', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
+          { id:'bos-ch1',  series:'blackout', title:'Black Out States', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
+          { id:'cc-ch1',   series:'crashhouse', title:'Content Crashhouse', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-02', href:'#' },
+          { id:'chs-ch1',  series:'crankhouse', title:'Crank House Shorts', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-01', href:'#' },
+          { id:'bw-ch1',   series:'battleworld', title:'Battle World', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2025-12-30', href:'#' }
+        ],
+        completed: [],
+        oneshot: []
+      };
+
+      const grid = document.getElementById('grid');
+      const empty = document.getElementById('empty');
+      const crumbSection = document.getElementById('crumbSection');
+      const sortSelect = document.getElementById('sortSelect');
+      const filterSelect = document.getElementById('filterSelect');
+
+      let activeTab = 'ongoing';
+
+      function sortItems(items){
+        const mode = sortSelect.value;
+        const list = [...items];
+        if(mode === 'recent'){
+          list.sort((a,b)=> (b.updated||'').localeCompare(a.updated||''));
+        } else if(mode === 'az'){
+          list.sort((a,b)=> (a.title||'').localeCompare(b.title||''));
+        } else if(mode === 'za'){
+          list.sort((a,b)=> (b.title||'').localeCompare(a.title||''));
+        }
+        return list;
+      }
+
+      function filterItems(items){
+        const f = filterSelect.value;
+        if(f === 'all') return items;
+        return items.filter(x => x.series === f);
+      }
+
+      function render(){
+        crumbSection.textContent = (activeTab === 'oneshot') ? 'one-shot' : activeTab;
+
+        let items = DATA[activeTab] || [];
+        items = filterItems(items);
+        items = sortItems(items);
+
+        grid.innerHTML = '';
+
+        if(!items.length){
+          empty.style.display = 'block';
+          return;
+        }
+        empty.style.display = 'none';
+
+        const frag = document.createDocumentFragment();
+        for(const it of items){
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          const a = document.createElement('a');
+          a.href = it.href || '#';
+          a.setAttribute('aria-label', `${it.title} — ${it.chapter || ''}`.trim());
+
+          const cover = document.createElement('div');
+          cover.className = 'cover';
+
+          if(it.cover){
+            const img = document.createElement('img');
+            img.src = it.cover;
+            img.alt = it.title;
+            cover.appendChild(img);
+          } else {
+            cover.textContent = it.title;
+          }
+
+          const meta = document.createElement('div');
+          meta.className = 'meta';
+
+          const name = document.createElement('div');
+          name.className = 'name';
+          name.textContent = it.title;
+
+          const chapter = document.createElement('div');
+          chapter.className = 'chapter';
+          chapter.textContent = it.chapter || '';
+
+          const langs = document.createElement('div');
+          langs.className = 'langs';
+          (it.langs || []).forEach(l => {
+            const span = document.createElement('span');
+            span.className = 'lang';
+            span.textContent = l;
+            langs.appendChild(span);
+          });
+
+          meta.appendChild(name);
+          if(it.chapter) meta.appendChild(chapter);
+          if((it.langs||[]).length) meta.appendChild(langs);
+
+          a.appendChild(cover);
+          a.appendChild(meta);
+          card.appendChild(a);
+          frag.appendChild(card);
+        }
+        grid.appendChild(frag);
+      }
+
+      const tabs = document.querySelectorAll('.tab');
+      function setTab(next){
+        activeTab = next;
+        tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === next ? 'true' : 'false'));
+        render();
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener('click', ()=> setTab(t.dataset.tab));
+        t.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setTab(t.dataset.tab);
+          }
+        });
+      });
+
+      sortSelect.addEventListener('change', render);
+      filterSelect.addEventListener('change', render);
+
+      render();
+    });
+  </script>
+</body>
+</html>

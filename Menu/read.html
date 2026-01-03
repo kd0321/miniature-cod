@@ -4,51 +4,155 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manga/Series | Sweet Roll Studios</title>
+
   <style>
-    *, *::before, *::after{ box-sizing:border-box; margin:0; padding:0; }
-    body{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif; }
-    a{ color:inherit; text-decoration:none; }
-    img{ display:block; max-width:100%; }
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
+    /* ===== BASE (READ11 GREEN) ===== */
     :root{
-      --bg:#0b0d10;
-      --top:#15181c;
-      --line:#2b3036;
-      --text:#f3f4f6;
-      --muted:#a8b0bb;
-      --shadow: 0 18px 45px rgba(0,0,0,.45);
-      --accent:#ff3b3b;
-      --radius: 14px;
+      --bg: #0e3b2e;
+      --panel: #102e24;
+      --panel2: rgba(0,0,0,0.12);
+      --line: #1f5a46;
+      --text: #f5f5f5;
+      --muted: #bfe9d5;
+      --muted2:#cde7db;
+      --accent: #8dffb3;
+      --shadow: 0 10px 30px rgba(0,0,0,0.6);
+      --radius: 16px;
     }
 
-    body{ background: var(--bg); color: var(--text); min-height: 100vh; }
-
-    /* ===== TOP HEADER (Read11 base) ===== */
-    .top{
-      background: linear-gradient(#1a1d22, #13161a);
-      border-bottom: 1px solid var(--line);
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    .top-inner{
-      max-width: 1180px;
+    header{
+      text-align: center;
+      padding: 90px 20px 26px;
+    }
+
+    main{
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 18px 16px 10px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 14px;
+      padding: 16px 20px 70px;
+    }
+
+    footer{
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== TITLE (READ11 STYLE) ===== */
+    .title-wrap{
+      position: relative;
+      display: inline-block;
+      padding: 28px 44px;
+    }
+
+    .title-wrap img{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 200px;
+      opacity: 0.55;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .title-wrap h1{
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: .2px;
-      line-height: 1;
+      position: relative;
+      z-index: 1;
+      font-size: 2.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    header p{
+      margin-top: 10px;
+      font-size: 1.05rem;
+      color: var(--muted2);
+    }
+
+    /* ===== TOP LEFT LARGE MENU (READ11) ===== */
+    .menu-container{
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 999;
+    }
+
+    .menu-btn{
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .menu-btn:hover{ background: #144235; }
+
+    .menu-dropdown{
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      min-width: 230px;
+      display: none;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-dropdown a{
+      display:block;
+      padding: 14px 20px;
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+    .menu-dropdown a:hover{
+      background: var(--line);
+      color: #ffffff;
+    }
+
+    /* ===== "MANGA PLUS" STYLE TABS/CONTROLS (MERGED, GREEN) ===== */
+    .bar{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      margin-top: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .bar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .crumbs{
-      margin-top: 8px;
-      font-size: 12.5px;
+      font-size: 0.95rem;
       color: var(--muted);
       display:flex;
       gap: 8px;
@@ -57,78 +161,27 @@
     }
     .crumbs a{ color: var(--muted); }
     .crumbs a:hover{ color: var(--text); }
-    .crumbs .sep{ opacity:.75; }
-
-    /* ===== MENU ===== */
-    .menu-container{ position: relative; }
-    .menu-btn{
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      cursor: pointer;
-    }
-    .menu-btn:hover{ border-color: rgba(255,255,255,.18); }
-
-    .menu-dropdown{
-      position: absolute;
-      right: 0;
-      top: 46px;
-      background: #12161c;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      min-width: 220px;
-      display:none;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      z-index: 50;
-    }
-    .menu-dropdown a{
-      display:block;
-      padding: 12px 14px;
-      color: var(--muted);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      font-weight: 700;
-      letter-spacing: .3px;
-    }
-    .menu-dropdown a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
-    .menu-dropdown a:last-child{ border-bottom:none; }
-
-    /* ===== TABS + CONTROLS BAR ===== */
-    .bar{
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    .bar-inner{
-      border-top: 1px solid rgba(255,255,255,.06);
-      padding: 14px 0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
+    .crumbs .sep{ opacity: .8; }
 
     .tabs{
       display:flex;
-      gap: 26px;
+      gap: 22px;
       align-items:center;
       justify-content:center;
       flex: 1;
+      min-width: 260px;
     }
 
     .tab{
       position: relative;
       color: var(--muted);
-      font-weight: 800;
-      letter-spacing: .3px;
+      font-weight: bold;
+      letter-spacing: 1px;
       padding: 10px 2px;
-      cursor:pointer;
-      user-select:none;
+      cursor: pointer;
+      user-select: none;
+      text-transform: uppercase;
+      font-size: 0.95rem;
     }
 
     .tab[aria-selected="true"]{ color: var(--text); }
@@ -138,9 +191,9 @@
       position:absolute;
       left:0;
       right:0;
-      bottom: -6px;
-      height: 2px;
-      background: var(--text);
+      bottom:-6px;
+      height: 3px;
+      background: var(--accent);
       border-radius: 999px;
     }
 
@@ -151,123 +204,24 @@
     }
 
     .select{
-      background: rgba(255,255,255,.06);
+      background: rgba(0,0,0,0.18);
       color: var(--text);
       border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 8px 10px;
-      font-weight: 800;
-      outline: none;
-    }
-
-    /* ===== SECTIONS ===== */
-    main{
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 18px 16px 44px;
-    }
-
-    .section{ margin-top: 18px; }
-
-    .section-title{
-      font-size: 14px;
-      letter-spacing: .25px;
-      font-weight: 900;
-      color: var(--text);
-      opacity: .95;
-      margin: 18px 0 12px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-    }
-
-    .dot{
-      width:10px;height:10px;border-radius:999px;background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(255,59,59,.15);
-    }
-
-    /* ===== START HERE (from Read3, restyled to Read11) ===== */
-    .feature-grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-    @media (max-width: 900px){
-      .feature-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 600px){
-      .feature-grid{ grid-template-columns: repeat(1, minmax(0, 1fr)); }
-    }
-
-    .feature-card{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      padding: 14px;
-      display:flex;
-      gap: 12px;
-      align-items: stretch;
-      box-shadow: 0 16px 34px rgba(0,0,0,.28);
-    }
-
-    .feature-cover{
-      width: 110px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(140px 160px at 30% 30%, rgba(255,255,255,.08), transparent 60%),
-        linear-gradient(135deg, rgba(255,59,59,.22), rgba(0,0,0,.2));
-      display:grid;
-      place-items:center;
-      text-align:center;
-      padding: 10px;
-      font-weight: 900;
-      color: rgba(243,244,246,.90);
-      flex: 0 0 110px;
-      aspect-ratio: 2 / 3;
-      overflow:hidden;
-    }
-    .feature-cover img{ width:100%; height:100%; object-fit:cover; }
-
-    .feature-body{ flex: 1; min-width: 0; display:flex; flex-direction:column; gap: 8px; }
-    .feature-body h3{ font-size: 14px; font-weight: 900; letter-spacing:.2px; }
-    .feature-body p{ font-size: 12.5px; color: var(--muted); line-height: 1.35; }
-
-    .pill-row{ display:flex; flex-wrap:wrap; gap: 8px; }
-    .pill{
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing:.25px;
-      padding: 5px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: rgba(243,244,246,.88);
-      white-space: nowrap;
-    }
-
-    .btn{
-      display:inline-block;
-      width: fit-content;
-      margin-top: auto;
-      background: rgba(255,59,59,.12);
-      border: 1px solid rgba(255,59,59,.35);
-      color: var(--text);
       padding: 10px 12px;
-      border-radius: 12px;
-      font-size: 12.5px;
-      font-weight: 900;
-      letter-spacing:.3px;
+      font-weight: bold;
+      outline: none;
+      letter-spacing: .5px;
     }
-    .btn:hover{ background: rgba(255,59,59,.18); }
 
-    /* ===== MAIN GRID (Read11 bigger covers) ===== */
+    /* ===== GRID (BIG COVERS LIKE READ3, BUT GREEN) ===== */
     .grid{
       display:grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 28px 22px;
-      margin-top: 6px;
+      margin-top: 18px;
     }
+
     @media (max-width: 1000px){
       .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
@@ -275,203 +229,139 @@
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 520px){
-      .top-inner{ align-items:flex-start; }
-      .tabs{ gap: 16px; }
+      header{ padding-top: 110px; }
+      .menu-btn{ padding: 12px 18px; font-size: 1rem; }
+      .title-wrap h1{ font-size: 2.2rem; }
       .grid{ grid-template-columns: repeat(1, minmax(0, 1fr)); }
+      .tabs{ min-width: 100%; justify-content: center; }
+      .controls{ width: 100%; justify-content: center; }
     }
 
     .card{ min-width: 0; }
 
+    .card a{ display:block; }
+
     .cover{
       width: 100%;
       aspect-ratio: 2 / 3;
-      border-radius: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
       background:
-        radial-gradient(160px 180px at 30% 30%, rgba(255,255,255,.09), transparent 60%),
-        linear-gradient(135deg, rgba(255,59,59,.22), rgba(0,0,0,.2));
-      border: 1px solid rgba(255,255,255,.10);
+        radial-gradient(180px 200px at 30% 28%, rgba(141,255,179,0.20), transparent 60%),
+        rgba(0,0,0,0.22);
       overflow:hidden;
-      box-shadow: 0 18px 34px rgba(0,0,0,.40);
+      box-shadow: 0 18px 34px rgba(0,0,0,0.40);
       display:grid;
       place-items:center;
-      color: rgba(243,244,246,.90);
-      font-weight: 900;
-      letter-spacing: .4px;
+      color: var(--muted2);
+      font-weight: bold;
+      letter-spacing: 1px;
       text-align:center;
       padding: 14px;
     }
 
-    .cover img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
+    .cover img{ width:100%; height:100%; object-fit: cover; }
+
+    .meta{
+      padding-top: 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
     }
 
-    .meta{ padding-top: 12px; display:flex; flex-direction:column; gap: 6px; }
     .name{
-      font-size: 15px;
-      font-weight: 900;
-      line-height: 1.15;
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
       color: var(--text);
+      line-height: 1.15;
       display:-webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow:hidden;
     }
+
     .chapter{
-      font-size: 13px;
+      font-size: 0.95rem;
       color: var(--muted);
-      font-weight: 800;
-      letter-spacing: .2px;
+      letter-spacing: 0.5px;
     }
+
     .langs{
       margin-top: 2px;
       display:flex;
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .lang{
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: .3px;
-      padding: 5px 7px;
-      border-radius: 6px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color: rgba(243,244,246,.88);
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
     }
 
     .empty{
-      padding: 26px 8px;
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
       color: var(--muted);
-      font-weight: 800;
-      letter-spacing: .2px;
-      display:none;
+      line-height: 1.5;
     }
 
     .card a:hover .cover{
       transform: translateY(-2px);
       transition: transform .12s ease;
-      border-color: rgba(255,255,255,.18);
+      border-color: #2a7a60;
     }
 
     .card a:focus-visible, .tab:focus-visible, .menu-btn:focus-visible, .select:focus-visible{
-      outline: 2px solid rgba(255,59,59,.75);
-      outline-offset: 2px;
-      border-radius: 10px;
-    }
-
-    /* ===== HORIZONTAL CHAPTER SCROLLS (Read3 idea, Read11 style) ===== */
-    .scroll-wrap{
-      margin-top: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      padding: 14px;
-    }
-
-    .info-box{
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.45;
-      margin-bottom: 12px;
-    }
-    .info-box strong{ color: var(--text); }
-
-    .chapter-scroll{
-      display:flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .chapter-scroll::-webkit-scrollbar { height: 10px; }
-    .chapter-scroll::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,.20);
-      border-radius: 999px;
-      border: 2px solid rgba(0,0,0,.35);
-    }
-    .chapter-scroll::-webkit-scrollbar-track {
-      background: rgba(0,0,0,.18);
-      border-radius: 999px;
-    }
-
-    .mini{
-      min-width: 190px;
-      max-width: 190px;
-      scroll-snap-align: start;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 14px;
-      padding: 10px;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-
-    .mini-cover{
-      width:100%;
-      aspect-ratio: 2 / 3;
+      outline: 2px solid rgba(141,255,179,0.85);
+      outline-offset: 3px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(120px 140px at 30% 30%, rgba(255,255,255,.08), transparent 60%),
-        linear-gradient(135deg, rgba(255,59,59,.18), rgba(0,0,0,.2));
-      display:grid;
-      place-items:center;
-      text-align:center;
-      color: rgba(243,244,246,.90);
-      font-weight: 900;
-      letter-spacing:.25px;
-      padding: 10px;
-      overflow:hidden;
-    }
-    .mini-cover img{ width:100%; height:100%; object-fit:cover; }
-
-    .mini-title{ font-size: 13px; font-weight: 900; }
-    .mini-sub{ font-size: 12px; color: var(--muted); font-weight: 800; }
-
-    /* ===== FOOTER (Read3) ===== */
-    footer{
-      border-top: 1px solid rgba(255,255,255,.08);
-      color: var(--muted);
-      text-align:center;
-      padding: 18px 16px 28px;
-      font-size: 12.5px;
     }
   </style>
 </head>
+
 <body>
-  <header class="top">
-    <div class="top-inner">
-      <div class="title-wrap">
-        <h1>Manga/Series</h1>
+  <!-- ===== MENU (TOP LEFT) ===== -->
+  <div class="menu-container">
+    <button class="menu-btn" type="button" id="menuBtn">MENU</button>
+
+    <div class="menu-dropdown" id="menuDropdown">
+      <a href="/index.html">Home</a>
+      <a href="clips.html">Clips</a>
+      <a href="read.html">Read</a>
+      <a href="watch.html">Watch</a>
+      <a href="merch.html">Merch</a>
+      <a href="socials.html">Socials</a>
+      <a href="world.html">World</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="title-wrap">
+      <img src="/images/chooru.png" alt="Sweet Roll Studios Emblem">
+      <h1>Manga/Series</h1>
+    </div>
+    <p>Ongoing • completed • one-shot</p>
+  </header>
+
+  <main>
+    <!-- Tabs/controls + breadcrumb (read3 content in read11 styling) -->
+    <div class="bar">
+      <div class="bar-inner">
         <nav class="crumbs" aria-label="Breadcrumb">
           <a href="#" id="crumbHome">home</a>
           <span class="sep">›</span>
           <span id="crumbSection">ongoing</span>
         </nav>
-      </div>
-
-      <div class="menu-container">
-        <button class="menu-btn" id="menuBtn" aria-haspopup="true" aria-expanded="false">MENU</button>
-        <div class="menu-dropdown" id="menuDropdown" role="menu" aria-label="Menu">
-          <a href="../index.html" role="menuitem">Home</a>
-          <a href="../clips/index.html" role="menuitem">Clips</a>
-          <a href="read.html" role="menuitem">Read</a>
-          <a href="../watch/index.html" role="menuitem">Watch</a>
-          <a href="../merch/index.html" role="menuitem">Merch</a>
-          <a href="../socials/index.html" role="menuitem">Socials</a>
-          <a href="../world/index.html" role="menuitem">World</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="bar">
-      <div class="bar-inner">
-        <div style="width:220px;"></div>
 
         <div class="tabs" role="tablist" aria-label="Manga list sections">
           <div class="tab" role="tab" tabindex="0" aria-selected="true" data-tab="ongoing">Ongoing</div>
@@ -496,39 +386,9 @@
         </div>
       </div>
     </div>
-  </header>
 
-  <main>
-    <!-- MERGED FROM READ3: Start Here cards (restyled) -->
-    <section class="section" id="startHere">
-      <div class="section-title"><span class="dot"></span><span>Start Here</span></div>
-      <div class="feature-grid" id="featureGrid"></div>
-    </section>
-
-    <!-- READ11 main grid -->
-    <section class="section" id="listSection">
-      <div class="section-title"><span class="dot"></span><span id="listTitle">Manga List</span></div>
-      <div class="grid" id="grid"></div>
-      <div class="empty" id="empty">No titles in this section yet.</div>
-    </section>
-
-    <!-- MERGED FROM READ3: per-series horizontal chapter rows -->
-    <section class="section" id="chapterRows">
-      <div class="section-title"><span class="dot"></span><span>Chapters</span></div>
-      <div id="rowsMount"></div>
-    </section>
-
-    <!-- MERGED FROM READ3: Notes -->
-    <section class="section" id="notes">
-      <div class="section-title"><span class="dot"></span><span>Notes</span></div>
-      <div class="scroll-wrap">
-        <div class="info-box">
-          <p><strong>Formats:</strong> PDF / digital book / web reader.</p>
-          <p><strong>Drop Updates:</strong> Post dates for the next chapter here.</p>
-          <p><strong>Support:</strong> Link merch, clips, and socials if you want people to help push the studio.</p>
-        </div>
-      </div>
-    </section>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">No titles in this section yet.</div>
   </main>
 
   <footer>
@@ -536,321 +396,160 @@
   </footer>
 
   <script>
-    // Year (Read3)
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", () => {
+      // Year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // Menu toggle (Read11)
-    const menuBtn = document.getElementById('menuBtn');
-    const menuDropdown = document.getElementById('menuDropdown');
+      // Menu
+      const menuBtn = document.getElementById("menuBtn");
+      const menuDropdown = document.getElementById("menuDropdown");
 
-    function closeMenu(){
-      menuDropdown.style.display = 'none';
-      menuBtn.setAttribute('aria-expanded','false');
-    }
-
-    menuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = menuDropdown.style.display === 'block';
-      if (isOpen) closeMenu();
-      else {
-        menuDropdown.style.display = 'block';
-        menuBtn.setAttribute('aria-expanded','true');
-      }
-    });
-
-    document.addEventListener('click', closeMenu);
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
-
-    // ===== Data =====
-    // - Read11 look, one chapter per card
-    // - Read3 content merged: Start Here + Notes + per-series horizontal rows
-    // - No author/pen name shown
-    const SERIES = [
-      { key:'core',       name:'Core Protocol',        blurb:'Entry point into the universe. Clean intro, characters, first major hook.' },
-      { key:'blackout',   name:'Black Out States',     blurb:'Dark, intense, and fast. Starts the arc with tension and mystery.' },
-      { key:'crashhouse', name:'Content Crashhouse',   blurb:'Short-form chaos and humor drops—fast reads and punchy moments.' },
-      { key:'crankhouse', name:'Crank House Shorts',   blurb:'Random cartoon stories built for laughs and quick episodes.' },
-      { key:'battleworld',name:'Battle World',         blurb:'A separate worldline—high stakes, new rules, new characters.' },
-    ];
-
-    const FEATURE_CARDS = [
-      { title:'Core Protocol — Chapter 1', desc:'Start here if you want the main universe introduction.', pills:['Chapter 1','Digital','Free/Paid'], cover:'', href:'#' },
-      { title:'Black Out States — Chapter 1', desc:'Start here if you want the darker arc first.', pills:['Chapter 1','Digital','Free/Paid'], cover:'', href:'#' },
-      { title:'Reading Order', desc:'Quick guide: what to read first, optional side stories, and timeline notes.', pills:['Guide','Updated'], cover:'', href:'#' },
-    ];
-
-    const DATA = {
-      ongoing: [
-        { id:'core-ch1', series:'core', title:'Core Protocol', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
-        { id:'bos-ch1',  series:'blackout', title:'Black Out States', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
-        { id:'cc-ch1',   series:'crashhouse', title:'Content Crashhouse', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-02', href:'#' },
-        { id:'chs-ch1',  series:'crankhouse', title:'Crank House Shorts', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-01', href:'#' },
-        { id:'bw-ch1',   series:'battleworld', title:'Battle World', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2025-12-30', href:'#' },
-      ],
-      completed: [],
-      oneshot: []
-    };
-
-    const CHAPTER_ROWS = {
-      core: [{ title:'Core Protocol', chapter:'Chapter 1', cover:'', href:'#' }],
-      blackout: [{ title:'Black Out States', chapter:'Chapter 1', cover:'', href:'#' }],
-      crashhouse: [{ title:'Content Crashhouse', chapter:'Chapter 1', cover:'', href:'#' }],
-      crankhouse: [{ title:'Crank House Shorts', chapter:'Chapter 1', cover:'', href:'#' }],
-      battleworld: [{ title:'Battle World', chapter:'Chapter 1', cover:'', href:'#' }],
-    };
-
-    const grid = document.getElementById('grid');
-    const empty = document.getElementById('empty');
-    const crumbSection = document.getElementById('crumbSection');
-    const listTitle = document.getElementById('listTitle');
-    const sortSelect = document.getElementById('sortSelect');
-    const filterSelect = document.getElementById('filterSelect');
-    const featureGrid = document.getElementById('featureGrid');
-    const rowsMount = document.getElementById('rowsMount');
-
-    let activeTab = 'ongoing';
-
-    function sortItems(items){
-      const mode = sortSelect.value;
-      const list = [...items];
-
-      if(mode === 'recent'){
-        list.sort((a,b)=> (b.updated||'').localeCompare(a.updated||''));
-      } else if(mode === 'az'){
-        list.sort((a,b)=> (a.title||'').localeCompare(b.title||''));
-      } else if(mode === 'za'){
-        list.sort((a,b)=> (b.title||'').localeCompare(a.title||''));
-      }
-      return list;
-    }
-
-    function filterItems(items){
-      const f = filterSelect.value;
-      if(f === 'all') return items;
-      return items.filter(x => x.series === f);
-    }
-
-    function renderFeatures(){
-      featureGrid.innerHTML = '';
-      const frag = document.createDocumentFragment();
-
-      FEATURE_CARDS.forEach(it => {
-        const card = document.createElement('div');
-        card.className = 'feature-card';
-
-        const cover = document.createElement('div');
-        cover.className = 'feature-cover';
-        if(it.cover){
-          const img = document.createElement('img');
-          img.src = it.cover;
-          img.alt = it.title;
-          cover.appendChild(img);
-        } else {
-          cover.textContent = 'Add Cover';
-        }
-
-        const body = document.createElement('div');
-        body.className = 'feature-body';
-
-        const h3 = document.createElement('h3');
-        h3.textContent = it.title;
-
-        const p = document.createElement('p');
-        p.textContent = it.desc;
-
-        const pills = document.createElement('div');
-        pills.className = 'pill-row';
-        (it.pills||[]).forEach(t => {
-          const s = document.createElement('span');
-          s.className = 'pill';
-          s.textContent = t;
-          pills.appendChild(s);
-        });
-
-        const a = document.createElement('a');
-        a.className = 'btn';
-        a.href = it.href || '#';
-        a.target = '_blank';
-        a.rel = 'noreferrer';
-        a.textContent = it.title === 'Reading Order' ? 'View Guide' : 'Read';
-
-        body.appendChild(h3);
-        body.appendChild(p);
-        body.appendChild(pills);
-        body.appendChild(a);
-
-        card.appendChild(cover);
-        card.appendChild(body);
-        frag.appendChild(card);
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menuDropdown.style.display = (menuDropdown.style.display === "block") ? "none" : "block";
       });
 
-      featureGrid.appendChild(frag);
-    }
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".menu-container")) menuDropdown.style.display = "none";
+      });
 
-    function renderRows(){
-      rowsMount.innerHTML = '';
-      const f = filterSelect.value;
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") menuDropdown.style.display = "none";
+      });
 
-      const keys = (f === 'all') ? SERIES.map(s => s.key) : [f];
+      // ===== DATA (from read3) =====
+      // One chapter per card. No author/pen name shown.
+      // cover: set to "covers/yourfile.png" when ready. If blank, shows placeholder.
+      const DATA = {
+        ongoing: [
+          { id:'core-ch1', series:'core', title:'Core Protocol', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
+          { id:'bos-ch1',  series:'blackout', title:'Black Out States', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
+          { id:'cc-ch1',   series:'crashhouse', title:'Content Crashhouse', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-02', href:'#' },
+          { id:'chs-ch1',  series:'crankhouse', title:'Crank House Shorts', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-01', href:'#' },
+          { id:'bw-ch1',   series:'battleworld', title:'Battle World', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2025-12-30', href:'#' }
+        ],
+        completed: [],
+        oneshot: []
+      };
 
-      const frag = document.createDocumentFragment();
+      const grid = document.getElementById('grid');
+      const empty = document.getElementById('empty');
+      const crumbSection = document.getElementById('crumbSection');
+      const sortSelect = document.getElementById('sortSelect');
+      const filterSelect = document.getElementById('filterSelect');
 
-      keys.forEach(key => {
-        const series = SERIES.find(s => s.key === key);
-        if(!series) return;
+      let activeTab = 'ongoing';
 
-        const items = CHAPTER_ROWS[key] || [];
-        if(items.length === 0) return;
+      function sortItems(items){
+        const mode = sortSelect.value;
+        const list = [...items];
+        if(mode === 'recent'){
+          list.sort((a,b)=> (b.updated||'').localeCompare(a.updated||''));
+        } else if(mode === 'az'){
+          list.sort((a,b)=> (a.title||'').localeCompare(b.title||''));
+        } else if(mode === 'za'){
+          list.sort((a,b)=> (b.title||'').localeCompare(a.title||''));
+        }
+        return list;
+      }
 
-        const wrap = document.createElement('div');
-        wrap.className = 'scroll-wrap';
+      function filterItems(items){
+        const f = filterSelect.value;
+        if(f === 'all') return items;
+        return items.filter(x => x.series === f);
+      }
 
-        const info = document.createElement('div');
-        info.className = 'info-box';
-        info.innerHTML = `<p><strong>${series.name}:</strong> ${series.blurb}</p>`;
+      function render(){
+        crumbSection.textContent = (activeTab === 'oneshot') ? 'one-shot' : activeTab;
 
-        const scroll = document.createElement('div');
-        scroll.className = 'chapter-scroll';
-        scroll.setAttribute('aria-label', `${series.name} chapters scroll`);
+        let items = DATA[activeTab] || [];
+        items = filterItems(items);
+        items = sortItems(items);
 
-        items.forEach(ch => {
-          const mini = document.createElement('div');
-          mini.className = 'mini';
+        grid.innerHTML = '';
+
+        if(!items.length){
+          empty.style.display = 'block';
+          return;
+        }
+        empty.style.display = 'none';
+
+        const frag = document.createDocumentFragment();
+        for(const it of items){
+          const card = document.createElement('div');
+          card.className = 'card';
 
           const a = document.createElement('a');
-          a.href = ch.href || '#';
-          a.setAttribute('aria-label', `${ch.title} — ${ch.chapter}`);
+          a.href = it.href || '#';
+          a.setAttribute('aria-label', `${it.title} — ${it.chapter || ''}`.trim());
 
-          const c = document.createElement('div');
-          c.className = 'mini-cover';
-          if(ch.cover){
+          const cover = document.createElement('div');
+          cover.className = 'cover';
+
+          if(it.cover){
             const img = document.createElement('img');
-            img.src = ch.cover;
-            img.alt = `${ch.title} ${ch.chapter}`;
-            c.appendChild(img);
+            img.src = it.cover;
+            img.alt = it.title;
+            cover.appendChild(img);
           } else {
-            c.textContent = ch.title;
+            cover.textContent = it.title;
           }
 
-          const t = document.createElement('div');
-          t.className = 'mini-title';
-          t.textContent = ch.chapter;
+          const meta = document.createElement('div');
+          meta.className = 'meta';
 
-          const sub = document.createElement('div');
-          sub.className = 'mini-sub';
-          sub.textContent = 'Digital';
+          const name = document.createElement('div');
+          name.className = 'name';
+          name.textContent = it.title;
 
-          a.appendChild(c);
-          mini.appendChild(a);
-          mini.appendChild(t);
-          mini.appendChild(sub);
+          const chapter = document.createElement('div');
+          chapter.className = 'chapter';
+          chapter.textContent = it.chapter || '';
 
-          scroll.appendChild(mini);
-        });
+          const langs = document.createElement('div');
+          langs.className = 'langs';
+          (it.langs || []).forEach(l => {
+            const span = document.createElement('span');
+            span.className = 'lang';
+            span.textContent = l;
+            langs.appendChild(span);
+          });
 
-        wrap.appendChild(info);
-        wrap.appendChild(scroll);
-        frag.appendChild(wrap);
-      });
+          meta.appendChild(name);
+          if(it.chapter) meta.appendChild(chapter);
+          if((it.langs||[]).length) meta.appendChild(langs);
 
-      rowsMount.appendChild(frag);
-    }
-
-    function renderGrid(){
-      crumbSection.textContent = activeTab === 'oneshot' ? 'one-shot' : activeTab;
-      listTitle.textContent = activeTab === 'ongoing' ? 'Ongoing' : (activeTab === 'completed' ? 'Completed' : 'One-shot');
-
-      let items = DATA[activeTab] || [];
-      items = filterItems(items);
-      items = sortItems(items);
-
-      grid.innerHTML = '';
-
-      if(!items.length){
-        empty.style.display = 'block';
-        return;
-      }
-      empty.style.display = 'none';
-
-      const frag = document.createDocumentFragment();
-      for(const it of items){
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        const a = document.createElement('a');
-        a.href = it.href || '#';
-        a.setAttribute('aria-label', `${it.title} — ${it.chapter || ''}`.trim());
-
-        const cover = document.createElement('div');
-        cover.className = 'cover';
-
-        if(it.cover){
-          const img = document.createElement('img');
-          img.src = it.cover;
-          img.alt = it.title;
-          cover.appendChild(img);
-        } else {
-          cover.textContent = it.title;
+          a.appendChild(cover);
+          a.appendChild(meta);
+          card.appendChild(a);
+          frag.appendChild(card);
         }
-
-        const meta = document.createElement('div');
-        meta.className = 'meta';
-
-        const name = document.createElement('div');
-        name.className = 'name';
-        name.textContent = it.title;
-
-        const chapter = document.createElement('div');
-        chapter.className = 'chapter';
-        chapter.textContent = it.chapter || '';
-
-        const langs = document.createElement('div');
-        langs.className = 'langs';
-        (it.langs || []).forEach(l => {
-          const span = document.createElement('span');
-          span.className = 'lang';
-          span.textContent = l;
-          langs.appendChild(span);
-        });
-
-        meta.appendChild(name);
-        if(it.chapter) meta.appendChild(chapter);
-        if((it.langs||[]).length) meta.appendChild(langs);
-
-        a.appendChild(cover);
-        a.appendChild(meta);
-        card.appendChild(a);
-        frag.appendChild(card);
+        grid.appendChild(frag);
       }
 
-      grid.appendChild(frag);
-    }
+      const tabs = document.querySelectorAll('.tab');
+      function setTab(next){
+        activeTab = next;
+        tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === next ? 'true' : 'false'));
+        render();
+      }
 
-    // Tabs
-    const tabs = document.querySelectorAll('.tab');
-    function setTab(next){
-      activeTab = next;
-      tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === next ? 'true' : 'false'));
-      renderGrid();
-    }
-
-    tabs.forEach(t => {
-      t.addEventListener('click', ()=> setTab(t.dataset.tab));
-      t.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setTab(t.dataset.tab);
-        }
+      tabs.forEach(t => {
+        t.addEventListener('click', ()=> setTab(t.dataset.tab));
+        t.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setTab(t.dataset.tab);
+          }
+        });
       });
+
+      sortSelect.addEventListener('change', render);
+      filterSelect.addEventListener('change', render);
+
+      render();
     });
-
-    sortSelect.addEventListener('change', () => { renderGrid(); });
-    filterSelect.addEventListener('change', () => { renderGrid(); renderRows(); });
-
-    // Initial
-    renderFeatures();
-    renderGrid();
-    renderRows();
   </script>
 </body>
 </html>
