@@ -165,106 +165,6 @@
     }
     .info-box strong { color: #f5f5f5; }
 
-    /* ===== SCROLL SECTIONS (NEW) ===== */
-    .scroll-wrap {
-      background: #102e24;
-      border: 1px solid #1f5a46;
-      border-radius: 16px;
-      padding: 14px;
-      margin-top: 8px;
-    }
-
-    .scroll-row {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-    }
-
-    .scroll-row::-webkit-scrollbar { height: 10px; }
-    .scroll-row::-webkit-scrollbar-thumb {
-      background: #1f5a46;
-      border-radius: 999px;
-      border: 2px solid #102e24;
-    }
-    .scroll-row::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.18);
-      border-radius: 999px;
-    }
-
-    .mini-card {
-      min-width: 210px;
-      max-width: 210px;
-      scroll-snap-align: start;
-      background: rgba(0,0,0,0.12);
-      border: 1px solid #1f5a46;
-      border-radius: 14px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .mini-img {
-      width: 100%;
-      height: 200px;
-      border-radius: 12px;
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.22);
-      object-fit: cover;
-      display: block;
-    }
-
-    .mini-placeholder {
-      width: 100%;
-      height: 200px;
-      border-radius: 12px;
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.22);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: #cde7db;
-      padding: 10px;
-      font-size: 0.92rem;
-      line-height: 1.25;
-    }
-
-    .mini-title {
-      font-size: 0.98rem;
-      font-weight: bold;
-      letter-spacing: 0.4px;
-    }
-
-    .mini-sub {
-      font-size: 0.9rem;
-      color: #bfe9d5;
-      line-height: 1.25;
-    }
-
-    .mini-price {
-      font-size: 0.95rem;
-      font-weight: bold;
-      color: #8dffb3;
-      margin-top: 2px;
-    }
-
-    .mini-btn {
-      display: inline-block;
-      margin-top: 2px;
-      background: #144235;
-      border: 1px solid #1f5a46;
-      color: #f5f5f5;
-      padding: 9px 12px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 0.92rem;
-      text-align: center;
-    }
-    .mini-btn:hover { background: #1f5a46; }
-
     /* ===== TOP LEFT LARGE MENU ===== */
     .menu-container {
       position: fixed;
@@ -380,155 +280,6 @@
       </div>
     </div>
 
-    <!-- NEW: CATEGORY SCROLL SECTIONS -->
-    <h2 class="section-title">Clothing</h2>
-    <div class="scroll-wrap">
-      <div class="scroll-row">
-        <div class="mini-card">
-          <div class="mini-placeholder">Clothing Image<br>(tee/hoodie)</div>
-          <div class="mini-title">Logo Tee</div>
-          <div class="mini-sub">Clean front logo • premium fit</div>
-          <div class="mini-price">$29.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Clothing Image</div>
-          <div class="mini-title">Hoodie</div>
-          <div class="mini-sub">Heavyweight • drop style</div>
-          <div class="mini-price">$49.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Clothing Image</div>
-          <div class="mini-title">Long Sleeve</div>
-          <div class="mini-sub">Minimal • clean print</div>
-          <div class="mini-price">$34.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Clothing Image</div>
-          <div class="mini-title">Hat / Beanie</div>
-          <div class="mini-sub">Logo stitch • simple</div>
-          <div class="mini-price">$24.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="section-title">Keychains</h2>
-    <div class="scroll-wrap">
-      <div class="scroll-row">
-        <div class="mini-card">
-          <div class="mini-placeholder">Keychain Image<br>(acrylic)</div>
-          <div class="mini-title">Character Keychain</div>
-          <div class="mini-sub">Acrylic • double-sided</div>
-          <div class="mini-price">$12.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Keychain Image</div>
-          <div class="mini-title">Symbol Keychain</div>
-          <div class="mini-sub">Faction symbols • clean</div>
-          <div class="mini-price">$10.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Keychain Image</div>
-          <div class="mini-title">Logo Keychain</div>
-          <div class="mini-sub">Studio emblem • minimal</div>
-          <div class="mini-price">$9.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Keychain Image</div>
-          <div class="mini-title">Limited Variant</div>
-          <div class="mini-sub">Seasonal drop • limited</div>
-          <div class="mini-price">$14.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="section-title">Wall Posters</h2>
-    <div class="scroll-wrap">
-      <div class="scroll-row">
-        <div class="mini-card">
-          <div class="mini-placeholder">Poster Image<br>(24x36)</div>
-          <div class="mini-title">Arc Poster</div>
-          <div class="mini-sub">High-res • clean finish</div>
-          <div class="mini-price">$24.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Poster Image</div>
-          <div class="mini-title">Character Poster</div>
-          <div class="mini-sub">Single character • bold</div>
-          <div class="mini-price">$19.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Poster Image</div>
-          <div class="mini-title">Cover Print</div>
-          <div class="mini-sub">Volume cover • premium</div>
-          <div class="mini-price">$22.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Poster Image</div>
-          <div class="mini-title">Limited Print</div>
-          <div class="mini-sub">Collector drop • limited</div>
-          <div class="mini-price">$29.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="section-title">Stickers</h2>
-    <div class="scroll-wrap">
-      <div class="scroll-row">
-        <div class="mini-card">
-          <div class="mini-placeholder">Sticker Image<br>(pack)</div>
-          <div class="mini-title">Sticker Pack</div>
-          <div class="mini-sub">Icons + symbols + logos</div>
-          <div class="mini-price">$7.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Sticker Image</div>
-          <div class="mini-title">Holographic</div>
-          <div class="mini-sub">Shiny • limited style</div>
-          <div class="mini-price">$9.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Sticker Image</div>
-          <div class="mini-title">Character Set</div>
-          <div class="mini-sub">Character faces • clean</div>
-          <div class="mini-price">$8.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-
-        <div class="mini-card">
-          <div class="mini-placeholder">Sticker Image</div>
-          <div class="mini-title">Logo Set</div>
-          <div class="mini-sub">Studio + series logos</div>
-          <div class="mini-price">$6.99</div>
-          <a class="mini-btn" href="#" target="_blank" rel="noreferrer">View</a>
-        </div>
-      </div>
-    </div>
-
     <h2 class="section-title">Drops & Notes</h2>
     <div class="info-box">
       <p><strong>Drop Schedule:</strong> Use this section to announce when new merch goes live.</p>
@@ -571,11 +322,14 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Year
       const yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+      // Menu
       const menuBtn = document.querySelector(".menu-btn");
       const menuDropdown = document.querySelector(".menu-dropdown");
+
       if (!menuBtn || !menuDropdown) return;
 
       menuBtn.addEventListener("click", (e) => {
