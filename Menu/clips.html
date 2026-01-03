@@ -201,21 +201,27 @@
     /* ===== SOCIALS LIST ===== */
     /* ===== SOCIALS ROW (SIDEWAYS) ===== */
 /* ===== SOCIALS FULL-WIDTH GRID ===== */
+/* ===== SOCIALS SIDEWAYS (NO SCROLL) ===== */
 .socials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
   gap: 20px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .social-item {
+  flex: 1;
+  min-width: 220px;
+  max-width: 100%;
   background: #102e24;
   border: 1px solid #1f5a46;
   border-radius: 18px;
   padding: 22px 18px;
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 
 .social-item:hover {
   transform: translateY(-4px);
