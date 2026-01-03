@@ -233,6 +233,42 @@
   transition: 0.2s ease;
 }
 
+/* ===== FEATURE CARDS — FORCE SAME SIZE ===== */
+
+/* make anchor the flex item */
+.book-scroll .card-link {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+}
+
+/* force equal card height */
+.book-scroll .card {
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* normalize ALL cover images */
+.book-scroll img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;          /* key fix: no shrinking */
+  border-radius: 12px;
+  border: 1px solid #1f5a46;
+  margin-bottom: 14px;
+}
+
+/* align titles & descriptions */
+.book-scroll .card h3 {
+  min-height: 44px;
+  line-height: 1.2;
+}
+
+.book-scroll .card p {
+  min-height: 52px;
+}
+
+
 
   </style>
 </head>
