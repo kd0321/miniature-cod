@@ -198,57 +198,79 @@
       color: #ffffff;
     }
 
-    /* ===== SOCIALS LIST ===== */
-    /* ===== SOCIALS ROW (SIDEWAYS) ===== */
-/* ===== SOCIALS FULL-WIDTH GRID ===== */
-/* ===== SOCIALS SIDEWAYS (NO SCROLL) ===== */
-/* ===== SOCIALS: ONE ROW, NO SCROLL ===== */
-.socials{
+/* ===== SOCIALS (CLEAN, SIDEWAYS, NO SCROLL) ===== */
+.socials {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   width: 100%;
-  flex-wrap: nowrap;          /* <-- forces one row */
   align-items: stretch;
+  justify-content: space-between;
 }
 
-/* Make all 5 fit inside your 1100px main */
-.social-item{
-  flex: 1 1 0;                /* equal widths */
-  min-width: 0;               /* IMPORTANT: lets flex items shrink */
+/* 5 cards across inside main (1100px). No scroll. */
+.social-item {
+  flex: 1 1 0;
+  min-width: 0;
   background: #102e24;
   border: 1px solid #1f5a46;
-  border-radius: 16px;
-  padding: 14px 12px;         /* smaller padding so they fit */
+  border-radius: 18px;
+  padding: 18px 14px;
   text-align: center;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Optional: shrink text a bit so it doesn’t overflow */
-.social-item h4{
-  font-size: 1rem;
-  margin-bottom: 6px;
+.social-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
 }
 
-.social-item p{
-  color: #bfe9d5;
-  font-size: 0.9rem;
-  line-height: 1.35;
-}
-
-/* Icon size tuned for smaller cards */
-.social-icon{
-  width: 44px;
-  height: 44px;
-  margin-bottom: 10px;
+.social-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 12px;
   object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.55));
 }
 
+.social-item h4 {
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
 
+.social-item p {
+  color: #bfe9d5;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
 
+.social-item a {
+  color: #8dffb3;
+  text-decoration: none;
+  font-weight: 700;
+}
 
-    .social-item h4 { font-size: 1.05rem; margin-bottom: 6px; }
-    .social-item p { color: #bfe9d5; font-size: 0.95rem; line-height: 1.4; }
-    .social-item a { color: #8dffb3; text-decoration: none; }
-    .social-item a:hover { text-decoration: underline; }
+.social-item a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive: if screen is too small for 5 across, wrap nicely */
+@media (max-width: 1100px) {
+  .socials { flex-wrap: wrap; }
+  .social-item { flex: 1 1 calc(33.333% - 18px); }
+}
+
+@media (max-width: 780px) {
+  .social-item { flex: 1 1 calc(50% - 18px); }
+}
+
+@media (max-width: 520px) {
+  .social-item { flex: 1 1 100%; }
+}
+
 
     /* Small screens */
     @media (max-width: 520px) {
