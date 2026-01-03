@@ -380,8 +380,8 @@
             <option value="core">Core Protocol</option>
             <option value="blackout">Black Out States</option>
             <option value="crashhouse">Content Crashhouse</option>
-            <option value="crankhouse">Crank House Shorts</option>
-            <option value="battleworld">Battle World</option>
+            <option value="voice">No Voice Left</option>
+            <option value="gods">No Gods Left to Blame</option>
           </select>
         </div>
       </div>
@@ -421,7 +421,7 @@
       // ===== DATA (from read3) =====
       // One chapter per card. No author/pen name shown.
       // cover: set to "covers/yourfile.png" when ready. If blank, shows placeholder.
-   const DATA = {
+  const DATA = {
   ongoing: [
     {
       id: 'core-ch1',
@@ -431,7 +431,7 @@
       langs: ['EN'],
       cover: '/images/core1.png',
       updated: '2026-01-03',
-      href: '#'
+      href: '/Chapter_List/core-protocol.html'
     },
     {
       id: 'bos-ch1',
@@ -441,7 +441,7 @@
       langs: ['EN'],
       cover: '/images/blackout1.png',
       updated: '2026-01-03',
-      href: '#'
+      href: '/Chapter_List/blackout-states.html'
     },
     {
       id: 'cc-ch1',
@@ -451,32 +451,33 @@
       langs: ['EN'],
       cover: '/images/content.png',
       updated: '2026-01-02',
-      href: '#'
+      href: '/Chapter_List/content-crashhouse.html'
     },
     {
-      id: 'chs-ch1',
-      series: 'Voice',
+      id: 'nvl-ch1',
+      series: 'voice',
       title: 'No Voice Left',
       chapter: 'Chapter 1',
       langs: ['EN'],
       cover: '/images/no-voice.png',
       updated: '2026-01-01',
-      href: '#'
+      href: '/Chapter_List/no-voice-left.html'
     },
     {
-      id: 'bw-ch1',
-      series: 'Gods',
+      id: 'nglb-ch1',
+      series: 'gods',
       title: 'No Gods Left to Blame',
       chapter: 'Chapter 1',
       langs: ['EN'],
       cover: '/images/no-gods.png',
       updated: '2025-12-30',
-      href: '#'
+      href: '/Chapter_List/no-gods-left.html'
     }
   ],
   completed: [],
   oneshot: []
 };
+
 
 
       const grid = document.getElementById('grid');
