@@ -109,18 +109,30 @@
     }
 
     /* ===== VIDEO AREA ===== */
-    .video-box {
-      width: 100%;
-      height: 210px;
-      border-radius: 12px;
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.25);
-      display: grid;
-      place-items: center;
-      color: #cde7db;
-      text-align: center;
-      padding: 10px;
-    }
+.video-box {
+  width: 100%;
+  height: 190px;
+  border-radius: 12px;
+  border: 1px solid #1f5a46;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.06) 25%,
+      rgba(0,0,0,0.15) 25%,
+      rgba(0,0,0,0.15) 50%,
+      rgba(255,255,255,0.06) 50%,
+      rgba(255,255,255,0.06) 75%,
+      rgba(0,0,0,0.15) 75%
+    );
+  background-size: 40px 40px;
+  display: grid;
+  place-items: center;
+  color: #cde7db;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 
     video.clip-video {
       width: 100%;
