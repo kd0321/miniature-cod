@@ -220,6 +220,18 @@
   display: block;
 }
 
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card-link:hover .card {
+  border-color: #8dffb3;
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
 
   </style>
 </head>
@@ -259,39 +271,54 @@
 
 <div class="book-scroll">
   <!-- BOOK 1 -->
+<a href="Chapter_List/core-protocol.html" class="card-link">
   <div class="card">
     <img src="images/core1.png" alt="Core Protocol Cover" class="book-cover">
     <h3>Core Protocol</h3>
     <p>Safety has a cost no one agreed to pay.</p>
   </div>
+</a>
+
 
   <!-- BOOK 2 -->
+<a href="Chapter_List/blackout-states.html" class="card-link">
   <div class="card">
     <img src="images/blackout1.png" alt="Blackout States Cover" class="book-cover-stretch">
     <h3>Blackout States</h3>
     <p>A nation flickering between power and collapse.</p>
   </div>
+</a>
+
 
   <!-- BOOK 3 -->
+<a href="Chapter_List/no-voice-left.html" class="card-link">
   <div class="card">
-    <img src="images/no-voice.png" alt="No Voice Left " class="book-cover-full">
+    <img src="images/no-voice.png" alt="No Voice Left Cover" class="book-cover-full">
     <h3>No Voice Left</h3>
     <p>A scream held too long becomes silence.</p>
   </div>
+</a>
+
 
   <!-- BOOK 4 -->
+<a href="Chapter_List/no-gods-left.html" class="card-link">
   <div class="card">
-    <img src="images/no-gods.png" alt="No Gods Left To Blame " class="book-cover-full">
+    <img src="images/no-gods.png" alt="No Gods Left To Blame Cover" class="book-cover-full">
     <h3>No Gods Left To Blame</h3>
     <p>When the sky offers no answers back.</p>
   </div>
+</a>
+
 
   <!-- BOOK 5 -->
+<a href="Chapter_List/content-crashhouse.html" class="card-link">
   <div class="card">
-    <img src="images/content.png" alt="Content Crashouse " class="book-cover-full">
-    <h3>Content Crashouse</h3>
-    <p>Not everything survives the crash, but something always remains..</p>
+    <img src="images/content.png" alt="Content Crashhouse Cover" class="book-cover-full">
+    <h3>Content Crashhouse</h3>
+    <p>Not everything survives the crash, but something always remains.</p>
   </div>
+</a>
+
 </div>
 
 </main>
