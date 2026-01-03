@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read | Sweet Roll Studios</title>
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== BASE ===== */
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e3b2e;
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 90px 20px 40px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 70px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1f5a46;
+      color: #bfe9d5;
+      font-size: 0.9rem;
+    }
+
+    /* ===== TITLE ===== */
+    .title-wrap {
+      position: relative;
+      display: inline-block;
+      padding: 28px 44px;
+    }
+
+    .title-wrap img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 200px;
+      opacity: 0.55;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .title-wrap h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 2.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 1.05rem;
+      color: #cde7db;
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-size: 1.5rem;
+      margin: 26px 0 18px;
+      border-left: 4px solid #8dffb3;
+      padding-left: 12px;
+    }
+
+    /* ===== GRID ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-top: 6px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #bfe9d5;
+      line-height: 1.4;
+    }
+
+    /* ===== COVER IMAGE / PLACEHOLDER ===== */
+    .cover-img {
+      width: 100%;
+      height: 220px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.25);
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-placeholder {
+      width: 100%;
+      height: 220px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.25);
+      display: grid;
+      place-items: center;
+      color: #cde7db;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* ===== META ===== */
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+      color: #bfe9d5;
+      font-size: 0.92rem;
+    }
+
+    .tag {
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.18);
+      padding: 6px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== CTA BUTTON ===== */
+    .btn {
+      display: inline-block;
+      margin-top: 6px;
+      background: #144235;
+      border: 1px solid #1f5a46;
+      color: #f5f5f5;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+    .btn:hover { background: #1f5a46; }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 16px;
+      color: #bfe9d5;
+      line-height: 1.5;
+    }
+    .info-box strong { color: #f5f5f5; }
+
+    /* ===== HORIZONTAL BOOK SCROLL ===== */
+    .scroll-wrap {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .book-scroll {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .book-scroll::-webkit-scrollbar { height: 10px; }
+    .book-scroll::-webkit-scrollbar-thumb {
+      background: #1f5a46;
+      border-radius: 999px;
+      border: 2px solid #102e24;
+    }
+    .book-scroll::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.18);
+      border-radius: 999px;
+    }
+
+    .book-card {
+      min-width: 180px;
+      max-width: 180px;
+      scroll-snap-align: start;
+      background: rgba(0,0,0,0.12);
+      border: 1px solid #1f5a46;
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .book-cover {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.22);
+      object-fit: cover;
+      display: block;
+    }
+
+    .book-placeholder {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      background: rgba(0,0,0,0.22);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #cde7db;
+      padding: 8px;
+      font-size: 0.92rem;
+      line-height: 1.2;
+    }
+
+    .book-title {
+      font-size: 0.98rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .book-sub {
+      font-size: 0.9rem;
+      color: #bfe9d5;
+      line-height: 1.25;
+    }
+
+    /* ===== TOP LEFT LARGE MENU ===== */
+    .menu-container {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 999;
+    }
+
+    .menu-btn {
+      background: #102e24;
+      color: #f5f5f5;
+      border: 1px solid #1f5a46;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .menu-btn:hover { background: #144235; }
+
+    .menu-dropdown {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      min-width: 230px;
+      display: none;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .menu-dropdown a {
+      display: block;
+      padding: 14px 20px;
+      color: #bfe9d5;
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .menu-dropdown a:hover {
+      background: #1f5a46;
+      color: #ffffff;
+    }
+
+    @media (max-width: 520px) {
+      header { padding-top: 110px; }
+      .menu-btn { padding: 12px 18px; font-size: 1rem; }
+      .title-wrap h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== MENU (TOP LEFT) ===== -->
+  <div class="menu-container">
+    <button class="menu-btn" type="button">MENU</button>
+
+    <div class="menu-dropdown">
+      <a href="/index.html">Home</a>
+      <a href="clips.html">Clips</a>
+      <a href="read.html">Read</a>
+      <a href="watch.html">Watch</a>
+      <a href="merch.html">Merch</a>
+      <a href="socials.html">Socials</a>
+      <a href="world.html">World</a>
+    </div>
+  </div>
+
+  <header>
+    <div class="title-wrap">
+      <img src="/images/chooru.png" alt="Sweet Roll Studios Emblem">
+      <h1>Read</h1>
+    </div>
+    <p>Chapters • volumes • lore books • digital drops</p>
+  </header>
+
+  <main>
+    <h2 class="section-title">Start Here</h2>
+    <div class="grid">
+      <!-- START CARD 1 -->
+      <div class="card">
+        <div class="img-placeholder">
+          Add Cover Image<br>(e.g. images/core-protocol-vol1.png)
+        </div>
+        <h3>Core Protocol — Volume 1</h3>
+        <p>Entry point into the universe. Clean intro, characters, and the first major hook.</p>
+        <div class="meta">
+          <span class="tag">Ch. 1–3</span>
+          <span class="tag">PDF / Digital</span>
+          <span class="tag">Free / Paid</span>
+        </div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Read / Download</a>
+      </div>
+
+      <!-- START CARD 2 -->
+      <div class="card">
+        <div class="img-placeholder">
+          Add Cover Image<br>(e.g. images/blackout-states-vol1.png)
+        </div>
+        <h3>Black Out States — Volume 1</h3>
+        <p>Dark, intense, and fast. Starts the arc with tension and mystery.</p>
+        <div class="meta">
+          <span class="tag">Ch. 1–3</span>
+          <span class="tag">PDF / Digital</span>
+          <span class="tag">Free / Paid</span>
+        </div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">Read / Download</a>
+      </div>
+
+      <!-- START CARD 3 -->
+      <div class="card">
+        <div class="img-placeholder">
+          Add Cover Image<br>(e.g. images/reading-order.png)
+        </div>
+        <h3>Reading Order</h3>
+        <p>Post a quick guide: what to read first, optional side stories, and timeline notes.</p>
+        <div class="meta">
+          <span class="tag">Guide</span>
+          <span class="tag">Updated</span>
+        </div>
+        <a class="btn" href="#" target="_blank" rel="noreferrer">View Guide</a>
+      </div>
+    </div>
+
+    <h2 class="section-title">Volumes & Chapters</h2>
+
+    <!-- SERIES 1 -->
+    <div class="scroll-wrap" style="margin-bottom: 18px;">
+      <div class="info-box" style="margin-bottom: 14px;">
+        <p><strong>Core Protocol:</strong> Add volumes as you drop them. Each card can link to a PDF, Gumroad, Shopify, Stripe checkout, etc.</p>
+      </div>
+
+      <div class="book-scroll" aria-label="Core Protocol volumes scroll">
+        <div class="book-card">
+          <div class="book-placeholder">Core Protocol<br>Vol. 1 Cover</div>
+          <div class="book-title">Vol. 1</div>
+          <div class="book-sub">Ch. 1–3 • Digital</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Core Protocol<br>Vol. 2 Cover</div>
+          <div class="book-title">Vol. 2</div>
+          <div class="book-sub">Ch. 4–6 • Digital</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Core Protocol<br>Vol. 3 Cover</div>
+          <div class="book-title">Vol. 3</div>
+          <div class="book-sub">Ch. 7–9 • Digital</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Core Protocol<br>Vol. 4 Cover</div>
+          <div class="book-title">Vol. 4</div>
+          <div class="book-sub">Coming Soon</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Core Protocol<br>Vol. 5 Cover</div>
+          <div class="book-title">Vol. 5</div>
+          <div class="book-sub">Coming Soon</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERIES 2 -->
+    <div class="scroll-wrap">
+      <div class="info-box" style="margin-bottom: 14px;">
+        <p><strong>Black Out States:</strong> Same setup—scrollable drop row. Replace placeholders with your covers and links.</p>
+      </div>
+
+      <div class="book-scroll" aria-label="Black Out States volumes scroll">
+        <div class="book-card">
+          <div class="book-placeholder">Black Out States<br>Vol. 1 Cover</div>
+          <div class="book-title">Vol. 1</div>
+          <div class="book-sub">Ch. 1–3 • Digital</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Black Out States<br>Vol. 2 Cover</div>
+          <div class="book-title">Vol. 2</div>
+          <div class="book-sub">Ch. 4–6 • Digital</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Black Out States<br>Vol. 3 Cover</div>
+          <div class="book-title">Vol. 3</div>
+          <div class="book-sub">Ch. 7–9 • Digital</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Black Out States<br>Vol. 4 Cover</div>
+          <div class="book-title">Vol. 4</div>
+          <div class="book-sub">Coming Soon</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
+        </div>
+
+        <div class="book-card">
+          <div class="book-placeholder">Black Out States<br>Vol. 5 Cover</div>
+          <div class="book-title">Vol. 5</div>
+          <div class="book-sub">Coming Soon</div>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Notes</h2>
+    <div class="info-box">
+      <p><strong>Formats:</strong> PDF / digital book / web reader.</p>
+      <p><strong>Drop Updates:</strong> Post dates for the next chapter or volume here.</p>
+      <p><strong>Support:</strong> Add “Buy merch” or “Share clips” links if you want people to help push the studio.</p>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Sweet Roll Studios
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Year
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Menu
+      const menuBtn = document.querySelector(".menu-btn");
+      const menuDropdown = document.querySelector(".menu-dropdown");
+
+      if (!menuBtn || !menuDropdown) return;
+
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menuDropdown.style.display =
+          (menuDropdown.style.display === "block") ? "none" : "block";
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".menu-container")) {
+          menuDropdown.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
