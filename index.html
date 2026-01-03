@@ -233,43 +233,43 @@
   transition: 0.2s ease;
 }
 
-/* ===== FEATURE SCROLL: UNIFORM CARDS + NO CROPPING ===== */
+/* ===== FEATURE SCROLL — FINAL FIX ===== */
 
-/* the <a> wrapper is the flex item now */
-.book-scroll .card-link{
-  flex: 0 0 300px;        /* card width */
+/* anchor is the flex item */
+.book-scroll .card-link {
+  flex: 0 0 300px;
   scroll-snap-align: start;
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-/* force all cards to be equal height */
-.book-scroll .card{
-  height: 440px;          /* card height */
+/* equal card sizing */
+.book-scroll .card {
+  height: 460px;                 /* slightly taller */
   display: flex;
   flex-direction: column;
 }
 
-/* cover image: show full cover (no zoom/crop) */
-.book-scroll .card img{
+/* FULL-WIDTH COVER (no letterboxing, controlled crop) */
+.book-scroll .card img {
   width: 100%;
-  height: 260px;
-  object-fit: contain;     /* KEY: no cropping */
-  background: #0b241c;     /* fills empty space nicely */
+  height: 300px;                 /* key: taller image area */
+  object-fit: cover;             /* fills the box again */
+  object-position: center top;   /* preserves titles better */
   border-radius: 12px;
   border: 1px solid #1f5a46;
   margin-bottom: 14px;
   display: block;
 }
 
-/* keep text aligned even if a title wraps */
-.book-scroll .card h3{
+/* text alignment consistency */
+.book-scroll .card h3 {
   min-height: 44px;
   line-height: 1.2;
 }
 
-.book-scroll .card p{
+.book-scroll .card p {
   min-height: 52px;
 }
 
