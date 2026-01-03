@@ -188,6 +188,26 @@
   color: #ffffff;
 }
 
+/* ===== HORIZONTAL SCROLL FOR BOOK CARDS ===== */
+.book-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 14px; /* makes scrollbar sit under the row */
+  scroll-snap-type: x mandatory;
+}
+
+.book-scroll .card {
+  flex: 0 0 300px;      /* card width */
+  scroll-snap-align: start;
+}
+
+/* optional: nicer scrolling on touch */
+.book-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+
   </style>
 </head>
 
@@ -224,21 +244,43 @@
 <main>
   <h2 class="section-title">Features In Progress</h2>
 
-  <div class="grid">
-    <!-- BOOK 1 -->
-    <div class="card">
-      <img src="images/core1.png" alt="Core Protocol Cover" class="book-cover">
-      <h3>Core Protocol</h3>
-      <p>Those who fail to control their core become liabilities, not legends.</p>
-    </div>
-
-    <!-- BOOK 2 (STRETCHED TO FIT BOX) -->
-    <div class="card">
-      <img src="images/blackout1.png" alt="Blackout States Cover" class="book-cover-stretch">
-      <h3>Blackout States</h3>
-      <p>Placeholder for your second illustrated story.</p>
-    </div>
+<div class="book-scroll">
+  <!-- BOOK 1 -->
+  <div class="card">
+    <img src="images/core1.png" alt="Core Protocol Cover" class="book-cover">
+    <h3>Core Protocol</h3>
+    <p>Safety has a cost no one agreed to pay.</p>
   </div>
+
+  <!-- BOOK 2 -->
+  <div class="card">
+    <img src="images/blackout1.png" alt="Blackout States Cover" class="book-cover-stretch">
+    <h3>Blackout States</h3>
+    <p>A nation flickering between power and collapse.</p>
+  </div>
+
+  <!-- BOOK 3 -->
+  <div class="card">
+    <img src="images/no-voice.png" alt="Book 3 Cover" class="book-cover">
+    <h3>No Voice Left</h3>
+    <p>A scream held too long becomes silence.</p>
+  </div>
+
+  <!-- BOOK 4 -->
+  <div class="card">
+    <img src="images/no-gods.png" alt="Book 4 Cover" class="book-cover">
+    <h3>No Gods Left To Blame</h3>
+    <p>When the sky offers no answers back.</p>
+  </div>
+
+  <!-- BOOK 5 -->
+  <div class="card">
+    <img src="images/content.png" alt="Book 5 Cover" class="book-cover">
+    <h3>Content Crashouse</h3>
+    <p>Not everything survives the crash, but something always remains..</p>
+  </div>
+</div>
+
 </main>
 
 <script>
