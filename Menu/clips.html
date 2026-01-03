@@ -198,79 +198,85 @@
       color: #ffffff;
     }
 
-/* ===== SOCIALS (CLEAN, SIDEWAYS, NO SCROLL) ===== */
-.socials {
-  display: flex;
-  gap: 18px;
+/* ===== SOCIALS (BIG WIDE CARDS, NO SCROLL) ===== */
+.socials{
+  display: grid;
+  gap: 22px;
+
+  /* BIG cards like your scroll cards, but no scroll */
+  grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+
   width: 100%;
-  align-items: stretch;
-  justify-content: space-between;
+  overflow: visible;      /* no scrolling */
 }
 
-/* 5 cards across inside main (1100px). No scroll. */
-.social-item {
-  flex: 1 1 0;
-  min-width: 0;
+/* Big wide “service-card” style */
+.social-item{
   background: #102e24;
   border: 1px solid #1f5a46;
   border-radius: 18px;
-  padding: 18px 14px;
+  padding: 22px 22px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+
+  box-shadow: 0 14px 34px rgba(0,0,0,0.35);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.social-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
+.social-item:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(0,0,0,0.45);
 }
 
-.social-icon {
-  width: 54px;
-  height: 54px;
-  margin: 0 auto 12px;
+/* Bigger icon so it looks like a real card header */
+.social-icon{
+  width: 72px;
+  height: 72px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.55));
+  margin-bottom: 14px;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
 }
 
-.social-item h4 {
-  font-size: 1.05rem;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
+.social-item h4{
+  font-size: 1.2rem;
+  letter-spacing: 0.6px;
+  margin-bottom: 10px;
 }
 
-.social-item p {
+.social-item p{
   color: #bfe9d5;
-  font-size: 0.92rem;
-  line-height: 1.35;
-  margin-bottom: 8px;
+  font-size: 1rem;
+  line-height: 1.45;
+  margin-bottom: 10px;
+  max-width: 52ch; /* keeps text looking clean on wide cards */
 }
 
-.social-item a {
+.social-item a{
   color: #8dffb3;
+  font-weight: 800;
   text-decoration: none;
-  font-weight: 700;
 }
 
-.social-item a:hover {
+.social-item a:hover{
   text-decoration: underline;
 }
 
-/* Responsive: if screen is too small for 5 across, wrap nicely */
-@media (max-width: 1100px) {
-  .socials { flex-wrap: wrap; }
-  .social-item { flex: 1 1 calc(33.333% - 18px); }
+/* Responsive: still wide, but fits smaller screens */
+@media (max-width: 1200px){
+  .socials{
+    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+  }
 }
 
-@media (max-width: 780px) {
-  .social-item { flex: 1 1 calc(50% - 18px); }
+@media (max-width: 900px){
+  .socials{
+    grid-template-columns: 1fr; /* one huge wide card per row */
+  }
 }
-
-@media (max-width: 520px) {
-  .social-item { flex: 1 1 100%; }
-}
-
 
     /* Small screens */
     @media (max-width: 520px) {
