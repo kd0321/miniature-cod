@@ -18,11 +18,12 @@
       --muted:#a8b0bb;
       --shadow: 0 18px 45px rgba(0,0,0,.45);
       --accent:#ff3b3b;
+      --radius: 14px;
     }
 
     body{ background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    /* ===== TOP HEADER ===== */
+    /* ===== TOP HEADER (Read11 base) ===== */
     .top{
       background: linear-gradient(#1a1d22, #13161a);
       border-bottom: 1px solid var(--line);
@@ -159,20 +160,114 @@
       outline: none;
     }
 
-    /* ===== GRID (BIGGER COVERS) ===== */
+    /* ===== SECTIONS ===== */
     main{
       max-width: 1180px;
       margin: 0 auto;
-      padding: 18px 16px 60px;
+      padding: 18px 16px 44px;
     }
 
-    /* 4x bigger feel: fewer columns + wider cards */
+    .section{ margin-top: 18px; }
+
+    .section-title{
+      font-size: 14px;
+      letter-spacing: .25px;
+      font-weight: 900;
+      color: var(--text);
+      opacity: .95;
+      margin: 18px 0 12px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .dot{
+      width:10px;height:10px;border-radius:999px;background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,59,59,.15);
+    }
+
+    /* ===== START HERE (from Read3, restyled to Read11) ===== */
+    .feature-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 900px){
+      .feature-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px){
+      .feature-grid{ grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    }
+
+    .feature-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items: stretch;
+      box-shadow: 0 16px 34px rgba(0,0,0,.28);
+    }
+
+    .feature-cover{
+      width: 110px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(140px 160px at 30% 30%, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(135deg, rgba(255,59,59,.22), rgba(0,0,0,.2));
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding: 10px;
+      font-weight: 900;
+      color: rgba(243,244,246,.90);
+      flex: 0 0 110px;
+      aspect-ratio: 2 / 3;
+      overflow:hidden;
+    }
+    .feature-cover img{ width:100%; height:100%; object-fit:cover; }
+
+    .feature-body{ flex: 1; min-width: 0; display:flex; flex-direction:column; gap: 8px; }
+    .feature-body h3{ font-size: 14px; font-weight: 900; letter-spacing:.2px; }
+    .feature-body p{ font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+
+    .pill-row{ display:flex; flex-wrap:wrap; gap: 8px; }
+    .pill{
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing:.25px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(243,244,246,.88);
+      white-space: nowrap;
+    }
+
+    .btn{
+      display:inline-block;
+      width: fit-content;
+      margin-top: auto;
+      background: rgba(255,59,59,.12);
+      border: 1px solid rgba(255,59,59,.35);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 12.5px;
+      font-weight: 900;
+      letter-spacing:.3px;
+    }
+    .btn:hover{ background: rgba(255,59,59,.18); }
+
+    /* ===== MAIN GRID (Read11 bigger covers) ===== */
     .grid{
       display:grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 28px 22px;
+      margin-top: 6px;
     }
-
     @media (max-width: 1000px){
       .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
@@ -213,8 +308,6 @@
     }
 
     .meta{ padding-top: 12px; display:flex; flex-direction:column; gap: 6px; }
-
-    /* Only title + chapter (no author/pen name) */
     .name{
       font-size: 15px;
       font-weight: 900;
@@ -225,21 +318,18 @@
       -webkit-box-orient: vertical;
       overflow:hidden;
     }
-
     .chapter{
       font-size: 13px;
       color: var(--muted);
       font-weight: 800;
       letter-spacing: .2px;
     }
-
     .langs{
       margin-top: 2px;
       display:flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-
     .lang{
       font-size: 11px;
       font-weight: 900;
@@ -256,6 +346,7 @@
       color: var(--muted);
       font-weight: 800;
       letter-spacing: .2px;
+      display:none;
     }
 
     .card a:hover .cover{
@@ -268,6 +359,87 @@
       outline: 2px solid rgba(255,59,59,.75);
       outline-offset: 2px;
       border-radius: 10px;
+    }
+
+    /* ===== HORIZONTAL CHAPTER SCROLLS (Read3 idea, Read11 style) ===== */
+    .scroll-wrap{
+      margin-top: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+    .info-box{
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+    .info-box strong{ color: var(--text); }
+
+    .chapter-scroll{
+      display:flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .chapter-scroll::-webkit-scrollbar { height: 10px; }
+    .chapter-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.20);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,.35);
+    }
+    .chapter-scroll::-webkit-scrollbar-track {
+      background: rgba(0,0,0,.18);
+      border-radius: 999px;
+    }
+
+    .mini{
+      min-width: 190px;
+      max-width: 190px;
+      scroll-snap-align: start;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 10px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+
+    .mini-cover{
+      width:100%;
+      aspect-ratio: 2 / 3;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(120px 140px at 30% 30%, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(135deg, rgba(255,59,59,.18), rgba(0,0,0,.2));
+      display:grid;
+      place-items:center;
+      text-align:center;
+      color: rgba(243,244,246,.90);
+      font-weight: 900;
+      letter-spacing:.25px;
+      padding: 10px;
+      overflow:hidden;
+    }
+    .mini-cover img{ width:100%; height:100%; object-fit:cover; }
+
+    .mini-title{ font-size: 13px; font-weight: 900; }
+    .mini-sub{ font-size: 12px; color: var(--muted); font-weight: 800; }
+
+    /* ===== FOOTER (Read3) ===== */
+    footer{
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      text-align:center;
+      padding: 18px 16px 28px;
+      font-size: 12.5px;
     }
   </style>
 </head>
@@ -327,12 +499,47 @@
   </header>
 
   <main>
-    <div class="grid" id="grid"></div>
-    <div class="empty" id="empty" style="display:none;">No titles in this section yet.</div>
+    <!-- MERGED FROM READ3: Start Here cards (restyled) -->
+    <section class="section" id="startHere">
+      <div class="section-title"><span class="dot"></span><span>Start Here</span></div>
+      <div class="feature-grid" id="featureGrid"></div>
+    </section>
+
+    <!-- READ11 main grid -->
+    <section class="section" id="listSection">
+      <div class="section-title"><span class="dot"></span><span id="listTitle">Manga List</span></div>
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty">No titles in this section yet.</div>
+    </section>
+
+    <!-- MERGED FROM READ3: per-series horizontal chapter rows -->
+    <section class="section" id="chapterRows">
+      <div class="section-title"><span class="dot"></span><span>Chapters</span></div>
+      <div id="rowsMount"></div>
+    </section>
+
+    <!-- MERGED FROM READ3: Notes -->
+    <section class="section" id="notes">
+      <div class="section-title"><span class="dot"></span><span>Notes</span></div>
+      <div class="scroll-wrap">
+        <div class="info-box">
+          <p><strong>Formats:</strong> PDF / digital book / web reader.</p>
+          <p><strong>Drop Updates:</strong> Post dates for the next chapter here.</p>
+          <p><strong>Support:</strong> Link merch, clips, and socials if you want people to help push the studio.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <footer>
+    © <span id="year"></span> Sweet Roll Studios
+  </footer>
+
   <script>
-    // ===== MENU TOGGLE =====
+    // Year (Read3)
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Menu toggle (Read11)
     const menuBtn = document.getElementById('menuBtn');
     const menuDropdown = document.getElementById('menuDropdown');
 
@@ -354,9 +561,24 @@
     document.addEventListener('click', closeMenu);
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
 
-    // ===== DATA =====
-    // One chapter per card. No author/pen name shown.
-    // cover: set to "covers/yourfile.png" when ready. If blank, shows a clean placeholder.
+    // ===== Data =====
+    // - Read11 look, one chapter per card
+    // - Read3 content merged: Start Here + Notes + per-series horizontal rows
+    // - No author/pen name shown
+    const SERIES = [
+      { key:'core',       name:'Core Protocol',        blurb:'Entry point into the universe. Clean intro, characters, first major hook.' },
+      { key:'blackout',   name:'Black Out States',     blurb:'Dark, intense, and fast. Starts the arc with tension and mystery.' },
+      { key:'crashhouse', name:'Content Crashhouse',   blurb:'Short-form chaos and humor drops—fast reads and punchy moments.' },
+      { key:'crankhouse', name:'Crank House Shorts',   blurb:'Random cartoon stories built for laughs and quick episodes.' },
+      { key:'battleworld',name:'Battle World',         blurb:'A separate worldline—high stakes, new rules, new characters.' },
+    ];
+
+    const FEATURE_CARDS = [
+      { title:'Core Protocol — Chapter 1', desc:'Start here if you want the main universe introduction.', pills:['Chapter 1','Digital','Free/Paid'], cover:'', href:'#' },
+      { title:'Black Out States — Chapter 1', desc:'Start here if you want the darker arc first.', pills:['Chapter 1','Digital','Free/Paid'], cover:'', href:'#' },
+      { title:'Reading Order', desc:'Quick guide: what to read first, optional side stories, and timeline notes.', pills:['Guide','Updated'], cover:'', href:'#' },
+    ];
+
     const DATA = {
       ongoing: [
         { id:'core-ch1', series:'core', title:'Core Protocol', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
@@ -369,11 +591,22 @@
       oneshot: []
     };
 
+    const CHAPTER_ROWS = {
+      core: [{ title:'Core Protocol', chapter:'Chapter 1', cover:'', href:'#' }],
+      blackout: [{ title:'Black Out States', chapter:'Chapter 1', cover:'', href:'#' }],
+      crashhouse: [{ title:'Content Crashhouse', chapter:'Chapter 1', cover:'', href:'#' }],
+      crankhouse: [{ title:'Crank House Shorts', chapter:'Chapter 1', cover:'', href:'#' }],
+      battleworld: [{ title:'Battle World', chapter:'Chapter 1', cover:'', href:'#' }],
+    };
+
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
     const crumbSection = document.getElementById('crumbSection');
+    const listTitle = document.getElementById('listTitle');
     const sortSelect = document.getElementById('sortSelect');
     const filterSelect = document.getElementById('filterSelect');
+    const featureGrid = document.getElementById('featureGrid');
+    const rowsMount = document.getElementById('rowsMount');
 
     let activeTab = 'ongoing';
 
@@ -397,8 +630,135 @@
       return items.filter(x => x.series === f);
     }
 
-    function render(){
+    function renderFeatures(){
+      featureGrid.innerHTML = '';
+      const frag = document.createDocumentFragment();
+
+      FEATURE_CARDS.forEach(it => {
+        const card = document.createElement('div');
+        card.className = 'feature-card';
+
+        const cover = document.createElement('div');
+        cover.className = 'feature-cover';
+        if(it.cover){
+          const img = document.createElement('img');
+          img.src = it.cover;
+          img.alt = it.title;
+          cover.appendChild(img);
+        } else {
+          cover.textContent = 'Add Cover';
+        }
+
+        const body = document.createElement('div');
+        body.className = 'feature-body';
+
+        const h3 = document.createElement('h3');
+        h3.textContent = it.title;
+
+        const p = document.createElement('p');
+        p.textContent = it.desc;
+
+        const pills = document.createElement('div');
+        pills.className = 'pill-row';
+        (it.pills||[]).forEach(t => {
+          const s = document.createElement('span');
+          s.className = 'pill';
+          s.textContent = t;
+          pills.appendChild(s);
+        });
+
+        const a = document.createElement('a');
+        a.className = 'btn';
+        a.href = it.href || '#';
+        a.target = '_blank';
+        a.rel = 'noreferrer';
+        a.textContent = it.title === 'Reading Order' ? 'View Guide' : 'Read';
+
+        body.appendChild(h3);
+        body.appendChild(p);
+        body.appendChild(pills);
+        body.appendChild(a);
+
+        card.appendChild(cover);
+        card.appendChild(body);
+        frag.appendChild(card);
+      });
+
+      featureGrid.appendChild(frag);
+    }
+
+    function renderRows(){
+      rowsMount.innerHTML = '';
+      const f = filterSelect.value;
+
+      const keys = (f === 'all') ? SERIES.map(s => s.key) : [f];
+
+      const frag = document.createDocumentFragment();
+
+      keys.forEach(key => {
+        const series = SERIES.find(s => s.key === key);
+        if(!series) return;
+
+        const items = CHAPTER_ROWS[key] || [];
+        if(items.length === 0) return;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'scroll-wrap';
+
+        const info = document.createElement('div');
+        info.className = 'info-box';
+        info.innerHTML = `<p><strong>${series.name}:</strong> ${series.blurb}</p>`;
+
+        const scroll = document.createElement('div');
+        scroll.className = 'chapter-scroll';
+        scroll.setAttribute('aria-label', `${series.name} chapters scroll`);
+
+        items.forEach(ch => {
+          const mini = document.createElement('div');
+          mini.className = 'mini';
+
+          const a = document.createElement('a');
+          a.href = ch.href || '#';
+          a.setAttribute('aria-label', `${ch.title} — ${ch.chapter}`);
+
+          const c = document.createElement('div');
+          c.className = 'mini-cover';
+          if(ch.cover){
+            const img = document.createElement('img');
+            img.src = ch.cover;
+            img.alt = `${ch.title} ${ch.chapter}`;
+            c.appendChild(img);
+          } else {
+            c.textContent = ch.title;
+          }
+
+          const t = document.createElement('div');
+          t.className = 'mini-title';
+          t.textContent = ch.chapter;
+
+          const sub = document.createElement('div');
+          sub.className = 'mini-sub';
+          sub.textContent = 'Digital';
+
+          a.appendChild(c);
+          mini.appendChild(a);
+          mini.appendChild(t);
+          mini.appendChild(sub);
+
+          scroll.appendChild(mini);
+        });
+
+        wrap.appendChild(info);
+        wrap.appendChild(scroll);
+        frag.appendChild(wrap);
+      });
+
+      rowsMount.appendChild(frag);
+    }
+
+    function renderGrid(){
       crumbSection.textContent = activeTab === 'oneshot' ? 'one-shot' : activeTab;
+      listTitle.textContent = activeTab === 'ongoing' ? 'Ongoing' : (activeTab === 'completed' ? 'Completed' : 'One-shot');
 
       let items = DATA[activeTab] || [];
       items = filterItems(items);
@@ -471,7 +831,7 @@
     function setTab(next){
       activeTab = next;
       tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === next ? 'true' : 'false'));
-      render();
+      renderGrid();
     }
 
     tabs.forEach(t => {
@@ -484,10 +844,13 @@
       });
     });
 
-    sortSelect.addEventListener('change', render);
-    filterSelect.addEventListener('change', render);
+    sortSelect.addEventListener('change', () => { renderGrid(); });
+    filterSelect.addEventListener('change', () => { renderGrid(); renderRows(); });
 
-    render();
+    // Initial
+    renderFeatures();
+    renderGrid();
+    renderRows();
   </script>
 </body>
 </html>
