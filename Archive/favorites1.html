@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favorites | Sweet Roll Studios</title>
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ===== PAGE BASE ===== */
+    body{
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #2b2b2b 0%, #1f1f1f 45%, #191919 100%);
+      color: #eaeaea;
+      min-height: 100vh;
+    }
+
+    /* ===== TOP BAR ===== */
+    .topbar{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 18px;
+      padding: 26px 34px;
+    }
+
+    .page-title{
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .crumbs{
+      font-size: 14px;
+      color: #bdbdbd;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 3px;
+    }
+
+    .crumbs a{
+      color: #bdbdbd;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .crumbs .sep{
+      color: #777;
+    }
+
+    /* ===== CENTER EMPTY STATE ===== */
+    .stage{
+      min-height: calc(100vh - 84px);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .empty-wrap{
+      width: 100%;
+      max-width: 980px;
+      text-align: center;
+    }
+
+    .empty-title{
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.22);
+      text-transform: uppercase;
+      margin-bottom: 34px;
+    }
+
+    .empty-line{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 26px;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 6px;
+      background: rgba(0,0,0,0.25);
+      color: rgba(255,255,255,0.95);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 1px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .pill .plus{
+      font-size: 26px;
+      font-weight: 900;
+      margin-top: -2px;
+    }
+
+    /* Make it look right on smaller screens */
+    @media (max-width: 700px){
+      .empty-title{ font-size: 32px; }
+      .empty-line{ font-size: 20px; }
+      .pill{ font-size: 16px; padding: 10px 14px; }
+      .pill .plus{ font-size: 20px; }
+      .topbar{ padding: 20px; }
+      .page-title{ font-size: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="page-title">Favorite</div>
+    <div class="crumbs">
+      <a href="index.html">home</a>
+      <span class="sep">›</span>
+      <span>favorited</span>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="empty-wrap">
+      <div class="empty-title">NO FAVORITES TO SHOW</div>
+
+      <div class="empty-line">
+        <span>Find the</span>
+        <span class="pill"><span class="plus">+</span> Favorite Button</span>
+        <span>to add your favorite series here!</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Roll Studios</title>
+
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== BASE ===== */
+    body {
+      font-family: Arial, sans-serif;
+      background: #0e3b2e;
+      color: #f5f5f5;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 70px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #1f5a46;
+      color: #bfe9d5;
+      font-size: 0.9rem;
+    }
+
+    /* ===== TITLE ===== */
+    .title-wrap {
+      position: relative;
+      display: inline-block;
+      padding: 40px 60px;
+    }
+
+    .title-wrap img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 240px;
+      opacity: 0.6;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .title-wrap h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 3.2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 20px rgba(0,0,0,0.4);
+    }
+
+    header p {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      color: #cde7db;
+    }
+
+    /* ===== GRID ===== */
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 22px;
+      border-left: 4px solid #8dffb3;
+      padding-left: 12px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: #102e24;
+      border: 1px solid #1f5a46;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin: 12px 0 8px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #bfe9d5;
+      line-height: 1.4;
+    }
+
+    /* ===== BOOK 1 (NORMAL) ===== */
+    .book-cover {
+      width: 100%;
+      height: 260px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      margin-bottom: 14px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ===== BOOK 2 (STRETCHED — FILLS BOX) ===== */
+    .book-cover-stretch {
+      width: 100%;
+      height: 260px;
+      border-radius: 12px;
+      border: 1px solid #1f5a46;
+      margin-bottom: 14px;
+
+      object-fit: fill;   /* <<< THIS IS THE FIX */
+      display: block;
+    }
+/* ===== TOP LEFT LARGE MENU ===== */
+.menu-container {
+  position: fixed;
+  top: 28px;
+  left: 28px;
+  z-index: 999;
+}
+
+/* MAIN BUTTON */
+.menu-btn {
+  background: #102e24;
+  color: #f5f5f5;
+  border: 1px solid #1f5a46;
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.menu-btn:hover {
+  background: #144235;
+}
+
+/* DROPDOWN */
+.menu-dropdown {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background: #102e24;
+  border: 1px solid #1f5a46;
+  border-radius: 16px;
+  min-width: 220px;
+  display: none;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* LINKS */
+.menu-dropdown a {
+  display: block;
+  padding: 14px 20px;
+  color: #bfe9d5;
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.menu-dropdown a:hover {
+  background: #1f5a46;
+  color: #ffffff;
+}
+
+/* ===== HORIZONTAL SCROLL FOR BOOK CARDS ===== */
+.book-scroll {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 14px; /* makes scrollbar sit under the row */
+  scroll-snap-type: x mandatory;
+}
+
+.book-scroll .card-link {
+  flex: 0 0 300px;      /* card width */
+  scroll-snap-align: start;
+}
+
+
+/* optional: nicer scrolling on touch */
+.book-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* FULL COVER – STRETCHED TO FIT CARD */
+.book-cover-full {
+  width: 100%;
+  height: 260px;              /* keep your card height */
+  border-radius: 12px;
+  border: 1px solid #1f5a46;
+  margin-bottom: 14px;
+
+  object-fit: fill;           /* <<< THIS IS THE KEY FIX */
+  object-position: center;
+  display: block;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card-link:hover .card {
+  border-color: #8dffb3;
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
+/* ===== FEATURE SCROLL — FINAL FIX ===== */
+
+/* anchor is the flex item */
+.book-scroll .card-link {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* equal card sizing */
+.book-scroll .card {
+  height: 460px;                 /* slightly taller */
+  display: flex;
+  flex-direction: column;
+}
+
+/* FULL-WIDTH COVER (no letterboxing, controlled crop) */
+.book-scroll .card img {
+  width: 100%;
+  height: 300px;                 /* key: taller image area */
+  object-fit: cover;             /* fills the box again */
+  object-position: center top;   /* preserves titles better */
+  border-radius: 12px;
+  border: 1px solid #1f5a46;
+  margin-bottom: 14px;
+  display: block;
+}
+
+/* text alignment consistency */
+.book-scroll .card h3 {
+  min-height: 44px;
+  line-height: 1.2;
+}
+
+.book-scroll .card p {
+  min-height: 52px;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== TOP RIGHT MENU ===== -->
+<!-- ===== TOP LEFT MENU ===== -->
+<div class="menu-container">
+  <button class="menu-btn">
+    MENU
+  </button>
+
+<div class="menu-dropdown">
+  <a href="menu/clips.html">Clips</a>
+  <a href="menu/read.html">Read</a>
+  <a href="menu/watch.html">Watch</a>
+  <a href="menu/merch.html">Merch</a>
+  <a href="menu/socials.html">Socials</a>
+  <a href="menu/favorites.html">Favorites</a>
+</div>
+
+</div>
+
+
+
+<header>
+  <div class="title-wrap">
+    <img src="images/chooru.png" alt="Sweet Roll Studios Emblem">
+    <h1>Sweet Roll Studios</h1>
+  </div>
+  <p>Original stories • Animation • Digital worlds</p>
+</header>
+
+<main>
+  <h2 class="section-title">Features In Progress</h2>
+
+<div class="book-scroll">
+  <!-- BOOK 1 -->
+<a href="Chapter_List/core-protocol.html" class="card-link">
+  <div class="card">
+    <img src="images/core1.png" alt="Core Protocol Cover" class="book-cover">
+    <h3>Core Protocol</h3>
+    <p>Safety has a cost no one agreed to pay.</p>
+  </div>
+</a>
+
+
+  <!-- BOOK 2 -->
+<a href="Chapter_List/blackout-states.html" class="card-link">
+  <div class="card">
+    <img src="images/blackout1.png" alt="Blackout States Cover" class="book-cover-stretch">
+    <h3>Blackout States</h3>
+    <p>A nation flickering between power and collapse.</p>
+  </div>
+</a>
+
+
+  <!-- BOOK 3 -->
+<a href="Chapter_List/no-voice-left.html" class="card-link">
+  <div class="card">
+    <img src="images/no-voice.png" alt="No Voice Left Cover" class="book-cover-full">
+    <h3>No Voice Left</h3>
+    <p>A scream held too long becomes silence.</p>
+  </div>
+</a>
+
+
+  <!-- BOOK 4 -->
+<a href="Chapter_List/no-gods-left.html" class="card-link">
+  <div class="card">
+    <img src="images/no-gods.png" alt="No Gods Left To Blame Cover" class="book-cover-full">
+    <h3>No Gods Left To Blame</h3>
+    <p>When the sky offers no answers back.</p>
+  </div>
+</a>
+
+
+  <!-- BOOK 5 -->
+<a href="Chapter_List/content-crashhouse.html" class="card-link">
+  <div class="card">
+    <img src="images/content.png" alt="Content Crashhouse Cover" class="book-cover-full">
+    <h3>Content Crashhouse</h3>
+    <p>Not everything survives the crash, but something always remains.</p>
+  </div>
+</a>
+
+</div>
+
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // year
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // menu
+    const menuBtn = document.querySelector(".menu-btn");
+    const menuDropdown = document.querySelector(".menu-dropdown");
+
+    if (!menuBtn || !menuDropdown) {
+      console.warn("Menu elements not found. Check .menu-btn and .menu-dropdown exist in HTML.");
+      return;
+    }
+
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      menuDropdown.style.display = (menuDropdown.style.display === "block") ? "none" : "block";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".menu-container")) {
+        menuDropdown.style.display = "none";
+      }
+    });
+  });
+</script>
+
+
+<footer>
+  © <span id="year"></span> Sweet Roll Studios
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
