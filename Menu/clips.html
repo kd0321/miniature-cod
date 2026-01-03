@@ -198,92 +198,104 @@
       color: #ffffff;
     }
 
-/* ===== SOCIALS (BIG WIDE CARDS, NO SCROLL) ===== */
-.socials{
-  display: grid;
-  gap: 22px;
+/* ===== SOCIALS: BIG SIDEWAYS PANELS, NO SCROLL ===== */
 
-  /* BIG cards like your scroll cards, but no scroll */
-  grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
-
-  width: 100%;
-  overflow: visible;      /* no scrolling */
+/* Break OUT of main's 1100px so the row can actually be wide */
+.socials-strip{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 0 20px; /* keeps it off the edge of the screen */
 }
 
-/* Big wide “service-card” style */
+/* One horizontal row */
+.socials{
+  display: flex;
+  flex-wrap: nowrap;     /* NEVER stack */
+  gap: 22px;
+  width: 100%;
+}
+
+/* Big wide panels (5 across) */
 .social-item{
+  flex: 0 0 calc((100% - (22px * 4)) / 5); /* exactly 5 wide across */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
   background: #102e24;
   border: 1px solid #1f5a46;
   border-radius: 18px;
-  padding: 22px 22px;
+  padding: 22px 18px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  text-decoration: none;
+  color: #f5f5f5;
 
-  box-shadow: 0 14px 34px rgba(0,0,0,0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.32);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 
 .social-item:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 20px 44px rgba(0,0,0,0.45);
+  transform: translateY(-3px);
+  border-color: rgba(141,255,179,0.6);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.42);
 }
 
-/* Bigger icon so it looks like a real card header */
+/* Icon bigger so the card feels "wide" */
 .social-icon{
-  width: 72px;
-  height: 72px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
-  display: block;
-  margin-bottom: 14px;
+  flex: 0 0 64px;
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
 }
 
+/* Text area */
+.social-text{
+  min-width: 0;
+}
+
 .social-item h4{
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   letter-spacing: 0.6px;
-  margin-bottom: 10px;
+  margin: 0 0 6px;
 }
 
 .social-item p{
+  margin: 0 0 10px;
   color: #bfe9d5;
-  font-size: 1rem;
-  line-height: 1.45;
-  margin-bottom: 10px;
-  max-width: 52ch; /* keeps text looking clean on wide cards */
+  font-size: 0.95rem;
+  line-height: 1.35;
 }
 
-.social-item a{
+.social-link{
   color: #8dffb3;
   font-weight: 800;
-  text-decoration: none;
+  letter-spacing: 0.2px;
 }
 
-.social-item a:hover{
-  text-decoration: underline;
-}
-
-/* Responsive: still wide, but fits smaller screens */
-@media (max-width: 1200px){
-  .socials{
-    grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+/* IMPORTANT: NO scrollbars, NO stacking. If screen gets too small,
+   cards shrink before breaking layout */
+@media (max-width: 1150px){
+  .social-item{
+    flex-basis: calc((100% - (22px * 4)) / 5);
+    padding: 18px 14px;
   }
+  .social-icon{ width: 56px; height: 56px; flex-basis: 56px; }
+  .social-item p{ font-size: 0.9rem; }
 }
 
+/* If you absolutely want NO stacking even on small screens,
+   we keep them sideways and just shrink more */
 @media (max-width: 900px){
-  .socials{
-    grid-template-columns: 1fr; /* one huge wide card per row */
+  .social-item{
+    padding: 16px 12px;
+    gap: 12px;
   }
+  .social-icon{ width: 48px; height: 48px; flex-basis: 48px; }
+  .social-item h4{ font-size: 1.02rem; }
+  .social-item p{ font-size: 0.86rem; }
 }
 
-    /* Small screens */
-    @media (max-width: 520px) {
-      header { padding-top: 110px; }
-      .menu-btn { padding: 12px 18px; font-size: 1rem; }
-      .title-wrap h1 { font-size: 2.2rem; }
-    }
   </style>
 </head>
 
