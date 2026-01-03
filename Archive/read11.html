@@ -3,47 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Read | Sweet Roll Studios</title>
+  <title>Manga/Series | Sweet Roll Studios</title>
 
   <style>
     /* ===== RESET ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
-    /* ===== BASE ===== */
-    body {
+    /* ===== BASE (READ11 GREEN) ===== */
+    :root{
+      --bg: #0e3b2e;
+      --panel: #102e24;
+      --panel2: rgba(0,0,0,0.12);
+      --line: #1f5a46;
+      --text: #f5f5f5;
+      --muted: #bfe9d5;
+      --muted2:#cde7db;
+      --accent: #8dffb3;
+      --shadow: 0 10px 30px rgba(0,0,0,0.6);
+      --radius: 16px;
+    }
+
+    body{
       font-family: Arial, sans-serif;
-      background: #0e3b2e;
-      color: #f5f5f5;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
     }
 
-    header {
+    header{
       text-align: center;
-      padding: 90px 20px 40px;
+      padding: 90px 20px 26px;
     }
 
-    main {
+    main{
       max-width: 1100px;
       margin: 0 auto;
-      padding: 30px 20px 70px;
+      padding: 16px 20px 70px;
     }
 
-    footer {
+    footer{
       text-align: center;
       padding: 20px;
-      border-top: 1px solid #1f5a46;
-      color: #bfe9d5;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
       font-size: 0.9rem;
     }
 
-    /* ===== TITLE ===== */
-    .title-wrap {
+    /* ===== TITLE (READ11 STYLE) ===== */
+    .title-wrap{
       position: relative;
       display: inline-block;
       padding: 28px 44px;
     }
 
-    .title-wrap img {
+    .title-wrap img{
       position: absolute;
       top: 50%;
       left: 50%;
@@ -54,7 +69,7 @@
       pointer-events: none;
     }
 
-    .title-wrap h1 {
+    .title-wrap h1{
       position: relative;
       z-index: 1;
       font-size: 2.7rem;
@@ -65,207 +80,24 @@
         0 0 20px rgba(0,0,0,0.4);
     }
 
-    header p {
-      margin-top: 12px;
+    header p{
+      margin-top: 10px;
       font-size: 1.05rem;
-      color: #cde7db;
+      color: var(--muted2);
     }
 
-    /* ===== SECTION TITLES ===== */
-    .section-title {
-      font-size: 1.5rem;
-      margin: 26px 0 18px;
-      border-left: 4px solid #8dffb3;
-      padding-left: 12px;
-    }
-
-    /* ===== GRID ===== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-    }
-
-    /* ===== CARD ===== */
-    .card {
-      background: #102e24;
-      border: 1px solid #1f5a46;
-      border-radius: 16px;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card h3 {
-      font-size: 1.1rem;
-      margin-top: 6px;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: #bfe9d5;
-      line-height: 1.4;
-    }
-
-    /* ===== COVER IMAGE / PLACEHOLDER ===== */
-    .cover-img {
-      width: 100%;
-      height: 220px;
-      border-radius: 12px;
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.25);
-      object-fit: cover;
-      display: block;
-    }
-
-    .img-placeholder {
-      width: 100%;
-      height: 220px;
-      border-radius: 12px;
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.25);
-      display: grid;
-      place-items: center;
-      color: #cde7db;
-      text-align: center;
-      padding: 10px;
-    }
-
-    /* ===== META ===== */
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 4px;
-      color: #bfe9d5;
-      font-size: 0.92rem;
-    }
-
-    .tag {
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.18);
-      padding: 6px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.5px;
-    }
-
-    /* ===== CTA BUTTON ===== */
-    .btn {
-      display: inline-block;
-      margin-top: 6px;
-      background: #144235;
-      border: 1px solid #1f5a46;
-      color: #f5f5f5;
-      padding: 10px 14px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      text-align: center;
-    }
-    .btn:hover { background: #1f5a46; }
-
-    /* ===== INFO BOX ===== */
-    .info-box {
-      background: #102e24;
-      border: 1px solid #1f5a46;
-      border-radius: 16px;
-      padding: 16px;
-      color: #bfe9d5;
-      line-height: 1.5;
-    }
-    .info-box strong { color: #f5f5f5; }
-
-    /* ===== HORIZONTAL BOOK SCROLL ===== */
-    .scroll-wrap {
-      background: #102e24;
-      border: 1px solid #1f5a46;
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .book-scroll {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .book-scroll::-webkit-scrollbar { height: 10px; }
-    .book-scroll::-webkit-scrollbar-thumb {
-      background: #1f5a46;
-      border-radius: 999px;
-      border: 2px solid #102e24;
-    }
-    .book-scroll::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.18);
-      border-radius: 999px;
-    }
-
-    .book-card {
-      min-width: 180px;
-      max-width: 180px;
-      scroll-snap-align: start;
-      background: rgba(0,0,0,0.12);
-      border: 1px solid #1f5a46;
-      border-radius: 14px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .book-cover {
-      width: 100%;
-      height: 240px;
-      border-radius: 12px;
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.22);
-      object-fit: cover;
-      display: block;
-    }
-
-    .book-placeholder {
-      width: 100%;
-      height: 240px;
-      border-radius: 12px;
-      border: 1px solid #1f5a46;
-      background: rgba(0,0,0,0.22);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      color: #cde7db;
-      padding: 8px;
-      font-size: 0.92rem;
-      line-height: 1.2;
-    }
-
-    .book-title {
-      font-size: 0.98rem;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-
-    .book-sub {
-      font-size: 0.9rem;
-      color: #bfe9d5;
-      line-height: 1.25;
-    }
-
-    /* ===== TOP LEFT LARGE MENU ===== */
-    .menu-container {
+    /* ===== TOP LEFT LARGE MENU (READ11) ===== */
+    .menu-container{
       position: fixed;
       top: 24px;
       left: 24px;
       z-index: 999;
     }
 
-    .menu-btn {
-      background: #102e24;
-      color: #f5f5f5;
-      border: 1px solid #1f5a46;
+    .menu-btn{
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
       border-radius: 14px;
       padding: 14px 28px;
       font-size: 1.05rem;
@@ -274,51 +106,235 @@
       cursor: pointer;
       text-transform: uppercase;
     }
+    .menu-btn:hover{ background: #144235; }
 
-    .menu-btn:hover { background: #144235; }
-
-    .menu-dropdown {
+    .menu-dropdown{
       position: absolute;
       top: 60px;
       left: 0;
-      background: #102e24;
-      border: 1px solid #1f5a46;
+      background: var(--panel);
+      border: 1px solid var(--line);
       border-radius: 16px;
       min-width: 230px;
       display: none;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      box-shadow: var(--shadow);
     }
 
-    .menu-dropdown a {
-      display: block;
+    .menu-dropdown a{
+      display:block;
       padding: 14px 20px;
-      color: #bfe9d5;
-      text-decoration: none;
+      color: var(--muted);
       font-size: 1rem;
       letter-spacing: 1px;
     }
-
-    .menu-dropdown a:hover {
-      background: #1f5a46;
+    .menu-dropdown a:hover{
+      background: var(--line);
       color: #ffffff;
     }
 
-    @media (max-width: 520px) {
-      header { padding-top: 110px; }
-      .menu-btn { padding: 12px 18px; font-size: 1rem; }
-      .title-wrap h1 { font-size: 2.2rem; }
+    /* ===== "MANGA PLUS" STYLE TABS/CONTROLS (MERGED, GREEN) ===== */
+    .bar{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      margin-top: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .bar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .crumbs{
+      font-size: 0.95rem;
+      color: var(--muted);
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+    .crumbs a{ color: var(--muted); }
+    .crumbs a:hover{ color: var(--text); }
+    .crumbs .sep{ opacity: .8; }
+
+    .tabs{
+      display:flex;
+      gap: 22px;
+      align-items:center;
+      justify-content:center;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .tab{
+      position: relative;
+      color: var(--muted);
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding: 10px 2px;
+      cursor: pointer;
+      user-select: none;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    .tab[aria-selected="true"]{ color: var(--text); }
+
+    .tab[aria-selected="true"]::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-6px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    .controls{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+
+    .select{
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: bold;
+      outline: none;
+      letter-spacing: .5px;
+    }
+
+    /* ===== GRID (BIG COVERS LIKE READ3, BUT GREEN) ===== */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 28px 22px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 1000px){
+      .grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px){
+      .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px){
+      header{ padding-top: 110px; }
+      .menu-btn{ padding: 12px 18px; font-size: 1rem; }
+      .title-wrap h1{ font-size: 2.2rem; }
+      .grid{ grid-template-columns: repeat(1, minmax(0, 1fr)); }
+      .tabs{ min-width: 100%; justify-content: center; }
+      .controls{ width: 100%; justify-content: center; }
+    }
+
+    .card{ min-width: 0; }
+
+    .card a{ display:block; }
+
+    .cover{
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(180px 200px at 30% 28%, rgba(141,255,179,0.20), transparent 60%),
+        rgba(0,0,0,0.22);
+      overflow:hidden;
+      box-shadow: 0 18px 34px rgba(0,0,0,0.40);
+      display:grid;
+      place-items:center;
+      color: var(--muted2);
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-align:center;
+      padding: 14px;
+    }
+
+    .cover img{ width:100%; height:100%; object-fit: cover; }
+
+    .meta{
+      padding-top: 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+
+    .name{
+      font-size: 1.05rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      line-height: 1.15;
+      display:-webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+
+    .chapter{
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .langs{
+      margin-top: 2px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .lang{
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+    }
+
+    .empty{
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .card a:hover .cover{
+      transform: translateY(-2px);
+      transition: transform .12s ease;
+      border-color: #2a7a60;
+    }
+
+    .card a:focus-visible, .tab:focus-visible, .menu-btn:focus-visible, .select:focus-visible{
+      outline: 2px solid rgba(141,255,179,0.85);
+      outline-offset: 3px;
+      border-radius: 12px;
     }
   </style>
 </head>
 
 <body>
-
   <!-- ===== MENU (TOP LEFT) ===== -->
   <div class="menu-container">
-    <button class="menu-btn" type="button">MENU</button>
+    <button class="menu-btn" type="button" id="menuBtn">MENU</button>
 
-    <div class="menu-dropdown">
+    <div class="menu-dropdown" id="menuDropdown">
       <a href="/index.html">Home</a>
       <a href="clips.html">Clips</a>
       <a href="read.html">Read</a>
@@ -332,155 +348,47 @@
   <header>
     <div class="title-wrap">
       <img src="/images/chooru.png" alt="Sweet Roll Studios Emblem">
-      <h1>Read</h1>
+      <h1>Manga/Series</h1>
     </div>
-    <p>Chapters • volumes • lore books • digital drops</p>
+    <p>Ongoing • completed • one-shot</p>
   </header>
 
   <main>
-    <h2 class="section-title">Start Here</h2>
-    <div class="grid">
-      <!-- START CARD 1 -->
-      <div class="card">
-        <div class="img-placeholder">
-          Add Cover Image<br>(e.g. images/core-protocol-vol1.png)
-        </div>
-        <h3>Core Protocol — Volume 1</h3>
-        <p>Entry point into the universe. Clean intro, characters, and the first major hook.</p>
-        <div class="meta">
-          <span class="tag">Ch. 1–3</span>
-          <span class="tag">PDF / Digital</span>
-          <span class="tag">Free / Paid</span>
-        </div>
-        <a class="btn" href="#" target="_blank" rel="noreferrer">Read / Download</a>
-      </div>
+    <!-- Tabs/controls + breadcrumb (read3 content in read11 styling) -->
+    <div class="bar">
+      <div class="bar-inner">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="#" id="crumbHome">home</a>
+          <span class="sep">›</span>
+          <span id="crumbSection">ongoing</span>
+        </nav>
 
-      <!-- START CARD 2 -->
-      <div class="card">
-        <div class="img-placeholder">
-          Add Cover Image<br>(e.g. images/blackout-states-vol1.png)
-        </div>
-        <h3>Black Out States — Volume 1</h3>
-        <p>Dark, intense, and fast. Starts the arc with tension and mystery.</p>
-        <div class="meta">
-          <span class="tag">Ch. 1–3</span>
-          <span class="tag">PDF / Digital</span>
-          <span class="tag">Free / Paid</span>
-        </div>
-        <a class="btn" href="#" target="_blank" rel="noreferrer">Read / Download</a>
-      </div>
-
-      <!-- START CARD 3 -->
-      <div class="card">
-        <div class="img-placeholder">
-          Add Cover Image<br>(e.g. images/reading-order.png)
-        </div>
-        <h3>Reading Order</h3>
-        <p>Post a quick guide: what to read first, optional side stories, and timeline notes.</p>
-        <div class="meta">
-          <span class="tag">Guide</span>
-          <span class="tag">Updated</span>
-        </div>
-        <a class="btn" href="#" target="_blank" rel="noreferrer">View Guide</a>
-      </div>
-    </div>
-
-    <h2 class="section-title">Volumes & Chapters</h2>
-
-    <!-- SERIES 1 -->
-    <div class="scroll-wrap" style="margin-bottom: 18px;">
-      <div class="info-box" style="margin-bottom: 14px;">
-        <p><strong>Core Protocol:</strong> Add volumes as you drop them. Each card can link to a PDF, Gumroad, Shopify, Stripe checkout, etc.</p>
-      </div>
-
-      <div class="book-scroll" aria-label="Core Protocol volumes scroll">
-        <div class="book-card">
-          <div class="book-placeholder">Core Protocol<br>Vol. 1 Cover</div>
-          <div class="book-title">Vol. 1</div>
-          <div class="book-sub">Ch. 1–3 • Digital</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
+        <div class="tabs" role="tablist" aria-label="Manga list sections">
+          <div class="tab" role="tab" tabindex="0" aria-selected="true" data-tab="ongoing">Ongoing</div>
+          <div class="tab" role="tab" tabindex="0" aria-selected="false" data-tab="completed">Completed</div>
+          <div class="tab" role="tab" tabindex="0" aria-selected="false" data-tab="oneshot">One-shot</div>
         </div>
 
-        <div class="book-card">
-          <div class="book-placeholder">Core Protocol<br>Vol. 2 Cover</div>
-          <div class="book-title">Vol. 2</div>
-          <div class="book-sub">Ch. 4–6 • Digital</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
-        </div>
-
-        <div class="book-card">
-          <div class="book-placeholder">Core Protocol<br>Vol. 3 Cover</div>
-          <div class="book-title">Vol. 3</div>
-          <div class="book-sub">Ch. 7–9 • Digital</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
-        </div>
-
-        <div class="book-card">
-          <div class="book-placeholder">Core Protocol<br>Vol. 4 Cover</div>
-          <div class="book-title">Vol. 4</div>
-          <div class="book-sub">Coming Soon</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
-        </div>
-
-        <div class="book-card">
-          <div class="book-placeholder">Core Protocol<br>Vol. 5 Cover</div>
-          <div class="book-title">Vol. 5</div>
-          <div class="book-sub">Coming Soon</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
+        <div class="controls">
+          <select class="select" id="sortSelect" aria-label="Sort">
+            <option value="az">A to Z</option>
+            <option value="za">Z to A</option>
+            <option value="recent" selected>Most Recent</option>
+          </select>
+          <select class="select" id="filterSelect" aria-label="Filter">
+            <option value="all" selected>Filter</option>
+            <option value="core">Core Protocol</option>
+            <option value="blackout">Black Out States</option>
+            <option value="crashhouse">Content Crashhouse</option>
+            <option value="crankhouse">Crank House Shorts</option>
+            <option value="battleworld">Battle World</option>
+          </select>
         </div>
       </div>
     </div>
 
-    <!-- SERIES 2 -->
-    <div class="scroll-wrap">
-      <div class="info-box" style="margin-bottom: 14px;">
-        <p><strong>Black Out States:</strong> Same setup—scrollable drop row. Replace placeholders with your covers and links.</p>
-      </div>
-
-      <div class="book-scroll" aria-label="Black Out States volumes scroll">
-        <div class="book-card">
-          <div class="book-placeholder">Black Out States<br>Vol. 1 Cover</div>
-          <div class="book-title">Vol. 1</div>
-          <div class="book-sub">Ch. 1–3 • Digital</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
-        </div>
-
-        <div class="book-card">
-          <div class="book-placeholder">Black Out States<br>Vol. 2 Cover</div>
-          <div class="book-title">Vol. 2</div>
-          <div class="book-sub">Ch. 4–6 • Digital</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
-        </div>
-
-        <div class="book-card">
-          <div class="book-placeholder">Black Out States<br>Vol. 3 Cover</div>
-          <div class="book-title">Vol. 3</div>
-          <div class="book-sub">Ch. 7–9 • Digital</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Read</a>
-        </div>
-
-        <div class="book-card">
-          <div class="book-placeholder">Black Out States<br>Vol. 4 Cover</div>
-          <div class="book-title">Vol. 4</div>
-          <div class="book-sub">Coming Soon</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
-        </div>
-
-        <div class="book-card">
-          <div class="book-placeholder">Black Out States<br>Vol. 5 Cover</div>
-          <div class="book-title">Vol. 5</div>
-          <div class="book-sub">Coming Soon</div>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">Notify</a>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="section-title">Notes</h2>
-    <div class="info-box">
-      <p><strong>Formats:</strong> PDF / digital book / web reader.</p>
-      <p><strong>Drop Updates:</strong> Post dates for the next chapter or volume here.</p>
-      <p><strong>Support:</strong> Add “Buy merch” or “Share clips” links if you want people to help push the studio.</p>
-    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">No titles in this section yet.</div>
   </main>
 
   <footer>
@@ -494,24 +402,154 @@
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
       // Menu
-      const menuBtn = document.querySelector(".menu-btn");
-      const menuDropdown = document.querySelector(".menu-dropdown");
-
-      if (!menuBtn || !menuDropdown) return;
+      const menuBtn = document.getElementById("menuBtn");
+      const menuDropdown = document.getElementById("menuDropdown");
 
       menuBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        menuDropdown.style.display =
-          (menuDropdown.style.display === "block") ? "none" : "block";
+        menuDropdown.style.display = (menuDropdown.style.display === "block") ? "none" : "block";
       });
 
       document.addEventListener("click", (e) => {
-        if (!e.target.closest(".menu-container")) {
-          menuDropdown.style.display = "none";
-        }
+        if (!e.target.closest(".menu-container")) menuDropdown.style.display = "none";
       });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") menuDropdown.style.display = "none";
+      });
+
+      // ===== DATA (from read3) =====
+      // One chapter per card. No author/pen name shown.
+      // cover: set to "covers/yourfile.png" when ready. If blank, shows placeholder.
+      const DATA = {
+        ongoing: [
+          { id:'core-ch1', series:'core', title:'Core Protocol', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
+          { id:'bos-ch1',  series:'blackout', title:'Black Out States', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-03', href:'#' },
+          { id:'cc-ch1',   series:'crashhouse', title:'Content Crashhouse', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-02', href:'#' },
+          { id:'chs-ch1',  series:'Voice', title:'No Voice Left', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2026-01-01', href:'#' },
+          { id:'bw-ch1',   series:'Gods', title:'No Gods Left to blame', chapter:'Chapter 1', langs:['EN'], cover:'', updated:'2025-12-30', href:'#' }
+        ],
+        completed: [],
+        oneshot: []
+      };
+
+      const grid = document.getElementById('grid');
+      const empty = document.getElementById('empty');
+      const crumbSection = document.getElementById('crumbSection');
+      const sortSelect = document.getElementById('sortSelect');
+      const filterSelect = document.getElementById('filterSelect');
+
+      let activeTab = 'ongoing';
+
+      function sortItems(items){
+        const mode = sortSelect.value;
+        const list = [...items];
+        if(mode === 'recent'){
+          list.sort((a,b)=> (b.updated||'').localeCompare(a.updated||''));
+        } else if(mode === 'az'){
+          list.sort((a,b)=> (a.title||'').localeCompare(b.title||''));
+        } else if(mode === 'za'){
+          list.sort((a,b)=> (b.title||'').localeCompare(a.title||''));
+        }
+        return list;
+      }
+
+      function filterItems(items){
+        const f = filterSelect.value;
+        if(f === 'all') return items;
+        return items.filter(x => x.series === f);
+      }
+
+      function render(){
+        crumbSection.textContent = (activeTab === 'oneshot') ? 'one-shot' : activeTab;
+
+        let items = DATA[activeTab] || [];
+        items = filterItems(items);
+        items = sortItems(items);
+
+        grid.innerHTML = '';
+
+        if(!items.length){
+          empty.style.display = 'block';
+          return;
+        }
+        empty.style.display = 'none';
+
+        const frag = document.createDocumentFragment();
+        for(const it of items){
+          const card = document.createElement('div');
+          card.className = 'card';
+
+          const a = document.createElement('a');
+          a.href = it.href || '#';
+          a.setAttribute('aria-label', `${it.title} — ${it.chapter || ''}`.trim());
+
+          const cover = document.createElement('div');
+          cover.className = 'cover';
+
+          if(it.cover){
+            const img = document.createElement('img');
+            img.src = it.cover;
+            img.alt = it.title;
+            cover.appendChild(img);
+          } else {
+            cover.textContent = it.title;
+          }
+
+          const meta = document.createElement('div');
+          meta.className = 'meta';
+
+          const name = document.createElement('div');
+          name.className = 'name';
+          name.textContent = it.title;
+
+          const chapter = document.createElement('div');
+          chapter.className = 'chapter';
+          chapter.textContent = it.chapter || '';
+
+          const langs = document.createElement('div');
+          langs.className = 'langs';
+          (it.langs || []).forEach(l => {
+            const span = document.createElement('span');
+            span.className = 'lang';
+            span.textContent = l;
+            langs.appendChild(span);
+          });
+
+          meta.appendChild(name);
+          if(it.chapter) meta.appendChild(chapter);
+          if((it.langs||[]).length) meta.appendChild(langs);
+
+          a.appendChild(cover);
+          a.appendChild(meta);
+          card.appendChild(a);
+          frag.appendChild(card);
+        }
+        grid.appendChild(frag);
+      }
+
+      const tabs = document.querySelectorAll('.tab');
+      function setTab(next){
+        activeTab = next;
+        tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === next ? 'true' : 'false'));
+        render();
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener('click', ()=> setTab(t.dataset.tab));
+        t.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setTab(t.dataset.tab);
+          }
+        });
+      });
+
+      sortSelect.addEventListener('change', render);
+      filterSelect.addEventListener('change', render);
+
+      render();
     });
   </script>
-
 </body>
 </html>
