@@ -273,6 +273,44 @@
   min-height: 52px;
 }
 
+/* ===== TOP RIGHT CHAPTER ALERT BELL ===== */
+.alert-bell{
+  position: fixed;
+  top: 28px;
+  right: 28px;
+  z-index: 1000;
+  width: 90px;              /* adjust size here */
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+.alert-bell img{
+  width: 100%;
+  height: auto;
+  display: block;
+  transform-origin: 50% 0%;
+  animation: bellShake 1.2s ease-in-out infinite;
+}
+
+@keyframes bellShake{
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(10deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(8deg); }
+  40% { transform: rotate(-8deg); }
+  50% { transform: rotate(6deg); }
+  60% { transform: rotate(-6deg); }
+  70% { transform: rotate(3deg); }
+  80% { transform: rotate(-3deg); }
+}
+
+/* respect accessibility settings */
+@media (prefers-reduced-motion: reduce){
+  .alert-bell img{ animation: none; }
+}
+
+
 
   </style>
 </head>
@@ -297,6 +335,10 @@
 
 </div>
 
+<!-- ===== TOP RIGHT CHAPTER ALERT BELL ===== -->
+<a class="alert-bell" href="menu/socials.html#chapter-alerts" aria-label="Chapter Alerts">
+  <img src="images/bell_chapter_alerts.png" alt="Click here for Chapter Alerts">
+</a>
 
 
 <header>
