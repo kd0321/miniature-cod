@@ -286,13 +286,26 @@
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
 }
 
-.alert-bell img{
+.alert-bell img {
   width: 100%;
   height: auto;
   display: block;
   transform-origin: 50% 0%;
   animation: bellShake 1.2s ease-in-out infinite;
+
+  /* FADES EDGES — hides white box */
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0) 100%
+  );
 }
+
 
 
 @keyframes bellShake{
