@@ -6,65 +6,16 @@
   <title>Blackout States — Chapter 1</title>
 
   <style>
-    :root{
-      --bg:#0b0b0f;
-      --panel:rgba(255,255,255,.06);
-      --border:rgba(255,255,255,.14);
-      --muted:rgba(255,255,255,.72);
-      --accent:#8dffb3;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:#fff;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      min-height:100vh;
-    }
-
-    .topbar{
-      max-width:1100px;
-      margin:0 auto;
-      padding:14px 16px 0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .topbar a{
-      color:#fff;
-      text-decoration:none;
-      opacity:.9;
-    }
-    .topbar a:hover{opacity:1}
-
-    .title{
-      max-width:1100px;
-      margin:0 auto;
-      padding:8px 16px 10px;
-    }
-    .title h1{
-      margin:0;
-      font-size:18px;
-      letter-spacing:.6px;
-    }
-    .title p{
-      margin:4px 0 0;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .reader{
-      max-width:1100px;
-      margin:0 auto;
-      padding:10px 16px 20px;
-    }
+    body{margin:0;background:#0b0b0f;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 16px 22px}
+    a{color:#fff;text-decoration:none;opacity:.9}
+    a:hover{opacity:1}
+    h1{margin:10px 0 6px;font-size:18px}
+    p{margin:0 0 12px;color:rgba(255,255,255,.75);font-size:13px}
 
     .frame{
-      position:relative;
-      background:var(--panel);
-      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
       border-radius:18px;
       overflow:hidden;
       box-shadow:0 18px 40px rgba(0,0,0,.45);
@@ -73,131 +24,79 @@
     .stage{
       position:relative;
       display:flex;
-      align-items:center;
       justify-content:center;
+      align-items:center;
       background:#07070a;
       min-height:60vh;
       user-select:none;
       touch-action:pan-y;
     }
 
-    .page-img{
+    img{
       width:100%;
       height:auto;
-      display:block;
-      max-height:84vh;
+      max-height:85vh;
       object-fit:contain;
+      display:block;
       background:#07070a;
     }
 
     .zone{
-      position:absolute;
-      top:0;
-      bottom:0;
-      width:35%;
-      cursor:pointer;
-      z-index:5;
+      position:absolute;top:0;bottom:0;width:35%;
+      z-index:5;cursor:pointer;
     }
     .zone.left{left:0}
     .zone.right{right:0}
 
     .arrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:46px;
-      height:46px;
-      border-radius:999px;
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:46px;height:46px;border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
       background:rgba(0,0,0,.28);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:6;
-      opacity:.95;
-      backdrop-filter: blur(6px);
+      display:flex;align-items:center;justify-content:center;
+      z-index:6;backdrop-filter:blur(6px);
     }
     .arrow.left{left:12px}
     .arrow.right{right:12px}
-    .arrow span{
-      font-size:24px;
-      line-height:1;
-      opacity:.9;
-    }
+    .arrow span{font-size:24px;opacity:.9}
 
     .bottom{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      border-top:1px solid rgba(255,255,255,.10);
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      padding:10px 12px;border-top:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.18);
     }
-
-    .meta{
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .controls{
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-
+    .meta{font-size:13px;color:rgba(255,255,255,.72)}
     button{
-      appearance:none;
       border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.06);
       color:#fff;
-      padding:9px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:600;
-      letter-spacing:.3px;
+      padding:9px 12px;border-radius:12px;
+      cursor:pointer;font-weight:600;
     }
-    button:hover{border-color:rgba(255,255,255,.28)}
-    button:disabled{
-      opacity:.45;
-      cursor:not-allowed;
-    }
+    button:disabled{opacity:.45;cursor:not-allowed}
   </style>
 </head>
 
 <body>
-
-  <div class="topbar">
+  <div class="wrap">
     <a href="../read.html">← Read</a>
-    <a href="../../index.html">SweetRollStudios.com</a>
-  </div>
-
-  <div class="title">
     <h1>Blackout States — Chapter 1</h1>
-    <p>Tap left/right (or swipe). Desktop: use ← → keys.</p>
-  </div>
+    <p>Tap left/right (or swipe). Desktop: ← → keys.</p>
 
-  <div class="reader">
     <div class="frame">
       <div class="stage" id="stage">
         <div class="zone left" id="tapPrev"></div>
         <div class="zone right" id="tapNext"></div>
 
-        <div class="arrow left" id="btnPrev" title="Previous (←)">
-          <span>‹</span>
-        </div>
+        <div class="arrow left" id="btnPrev"><span>‹</span></div>
+        <div class="arrow right" id="btnNext"><span>›</span></div>
 
-        <div class="arrow right" id="btnNext" title="Next (→)">
-          <span>›</span>
-        </div>
-
-        <img id="pageImg" class="page-img" src="" alt="Chapter Page">
+        <img id="pageImg" src="" alt="Chapter page">
       </div>
 
       <div class="bottom">
         <div class="meta" id="metaText">Loading…</div>
-
-        <div class="controls">
+        <div>
           <button id="firstBtn" type="button">First</button>
           <button id="prevBtn" type="button">Prev</button>
           <button id="nextBtn" type="button">Next</button>
@@ -209,80 +108,68 @@
 
 <script>
 (() => {
-  // ✅ YOUR EXACT IMAGE PATH
-  // chapter-images / blackout-states / chapter-1 / 1.png ... 9.png
-  const BASE = "chapter-images/blackout-states/chapter-1/";
-  const EXT = "png";
-  const TOTAL_PAGES = 9;
+  // ✅ MANUAL LIST — EVERY PAGE IS HARD-CODED
+  const PAGES = [
+    "../chapter-images/blackout-states/chapter-1/1.png",
+    "../chapter-images/blackout-states/chapter-1/2.png",
+    "../chapter-images/blackout-states/chapter-1/3.png",
+    "../chapter-images/blackout-states/chapter-1/4.png",
+    "../chapter-images/blackout-states/chapter-1/5.png",
+    "../chapter-images/blackout-states/chapter-1/6.png",
+    "../chapter-images/blackout-states/chapter-1/7.png",
+    "../chapter-images/blackout-states/chapter-1/8.png",
+    "../chapter-images/blackout-states/chapter-1/9.png"
+  ];
 
   const imgEl = document.getElementById("pageImg");
   const meta = document.getElementById("metaText");
 
   const firstBtn = document.getElementById("firstBtn");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const lastBtn = document.getElementById("lastBtn");
+  const prevBtn  = document.getElementById("prevBtn");
+  const nextBtn  = document.getElementById("nextBtn");
+  const lastBtn  = document.getElementById("lastBtn");
 
   const btnPrev = document.getElementById("btnPrev");
   const btnNext = document.getElementById("btnNext");
   const tapPrev = document.getElementById("tapPrev");
   const tapNext = document.getElementById("tapNext");
-  const stage = document.getElementById("stage");
+  const stage   = document.getElementById("stage");
 
-  const pageSrc = (n) => `${BASE}${n}.${EXT}`;
+  let index = 0;
 
-  let page = 1;
-
-  // optional: allow direct linking like chap-1.html?p=5
-  const params = new URLSearchParams(location.search);
-  const p = parseInt(params.get("p"), 10);
-  if (!Number.isNaN(p) && p >= 1 && p <= TOTAL_PAGES) page = p;
-
-  function setUrlPage(n){
-    const u = new URL(location.href);
-    u.searchParams.set("p", n);
-    history.replaceState({}, "", u);
-  }
-
-  function preload(n){
-    if (n < 1 || n > TOTAL_PAGES) return;
-    const i = new Image();
-    i.src = pageSrc(n);
+  function preload(i){
+    if (i < 0 || i >= PAGES.length) return;
+    const im = new Image();
+    im.src = PAGES[i];
   }
 
   function render(){
-    imgEl.src = pageSrc(page);
-    imgEl.alt = `Blackout States — Chapter 1 — Page ${page}`;
+    imgEl.src = PAGES[index];
+    meta.textContent = `Page ${index + 1} / ${PAGES.length}`;
 
-    meta.textContent = `Page ${page} / ${TOTAL_PAGES}`;
+    firstBtn.disabled = index === 0;
+    prevBtn.disabled  = index === 0;
+    nextBtn.disabled  = index === PAGES.length - 1;
+    lastBtn.disabled  = index === PAGES.length - 1;
 
-    firstBtn.disabled = page === 1;
-    prevBtn.disabled  = page === 1;
-    nextBtn.disabled  = page === TOTAL_PAGES;
-    lastBtn.disabled  = page === TOTAL_PAGES;
-
-    preload(page + 1);
-    preload(page - 1);
-
-    setUrlPage(page);
+    preload(index + 1);
+    preload(index - 1);
   }
 
-  function go(n){
-    page = Math.min(TOTAL_PAGES, Math.max(1, n));
+  function go(i){
+    index = Math.max(0, Math.min(PAGES.length - 1, i));
     render();
   }
+  function next(){ if (index < PAGES.length - 1) go(index + 1); }
+  function prev(){ if (index > 0) go(index - 1); }
 
-  function next(){ if (page < TOTAL_PAGES) go(page + 1); }
-  function prev(){ if (page > 1) go(page - 1); }
-
-  firstBtn.addEventListener("click", () => go(1));
-  lastBtn.addEventListener("click", () => go(TOTAL_PAGES));
+  firstBtn.addEventListener("click", () => go(0));
+  lastBtn.addEventListener("click", () => go(PAGES.length - 1));
   prevBtn.addEventListener("click", prev);
   nextBtn.addEventListener("click", next);
 
   btnPrev.addEventListener("click", prev);
   btnNext.addEventListener("click", next);
-
   tapPrev.addEventListener("click", prev);
   tapNext.addEventListener("click", next);
 
@@ -291,25 +178,19 @@
     if (e.key === "ArrowLeft") prev();
   });
 
-  // swipe support
+  // swipe
   let x0 = null;
-  stage.addEventListener("touchstart", (e) => {
-    x0 = e.touches[0].clientX;
-  }, {passive:true});
-
-  stage.addEventListener("touchend", (e) => {
+  stage.addEventListener("touchstart", (e)=>{ x0 = e.touches[0].clientX; }, {passive:true});
+  stage.addEventListener("touchend", (e)=>{
     if (x0 === null) return;
-    const x1 = e.changedTouches[0].clientX;
-    const dx = x1 - x0;
+    const dx = e.changedTouches[0].clientX - x0;
     x0 = null;
-
     if (Math.abs(dx) < 40) return;
-    if (dx < 0) next();
-    else prev();
+    if (dx < 0) next(); else prev();
   }, {passive:true});
 
   imgEl.addEventListener("error", () => {
-    meta.textContent = `Missing file: ${pageSrc(page)}`;
+    meta.textContent = `Missing file: ${PAGES[index]}`;
   });
 
   render();
