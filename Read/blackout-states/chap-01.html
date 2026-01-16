@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blackout States — Chapter 01</title>
+
+  <style>
+    body{
+      margin:0;
+      background:#0b0b0f;
+      color:#fff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    }
+
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:18px;
+    }
+
+    a{color:#fff;text-decoration:none}
+
+    .back{
+      display:inline-block;
+      margin-bottom:14px;
+      opacity:.9;
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:28px;
+    }
+
+    .sub{
+      margin:0 0 16px;
+      opacity:.75;
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    @media (max-width:800px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:520px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      overflow:hidden;
+      transition:transform .12s ease, border-color .12s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.22);
+    }
+
+    .card img{
+      width:100%;
+      display:block;
+      aspect-ratio: 1 / 1;
+      object-fit:cover;
+      background:#111;
+    }
+
+    .meta{
+      padding:10px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      opacity:.9;
+      font-size:14px;
+    }
+
+    .arrow{
+      font-size:18px;
+      opacity:.8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Change this to your actual series home page if needed -->
+    <a class="back" href="../series-home.html">← Series Home</a>
+
+    <h1>Chapter 01</h1>
+    <p class="sub">Tap a page to read.</p>
+
+    <div class="grid">
+
+      <a class="card" href="chapter-001/001.html">
+        <img src="chapter-001/images/001.webp" alt="Page 001 thumbnail">
+        <div class="meta"><span>Page 001</span><span class="arrow">›</span></div>
+      </a>
+
+      <a class="card" href="chapter-001/002.html">
+        <img src="chapter-001/images/002.webp" alt="Page 002 thumbnail">
+        <div class="meta"><span>Page 002</span><span class="arrow">›</span></div>
+      </a>
+
+      <a class="card" href="chapter-001/003.html">
+        <img src="chapter-001/images/003.webp" alt="Page 003 thumbnail">
+        <div class="meta"><span>Page 003</span><span class="arrow">›</span></div>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>
