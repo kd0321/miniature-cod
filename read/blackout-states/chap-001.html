@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Blackout States — Chapter 01</title>
+  <title>Blackout States — Chapter 1</title>
 
   <style>
     :root{
@@ -100,7 +100,6 @@
     }
     .zone.left{left:0}
     .zone.right{right:0}
-    .zone:active{background:rgba(255,255,255,.03)}
 
     .arrow{
       position:absolute;
@@ -163,46 +162,36 @@
       opacity:.45;
       cursor:not-allowed;
     }
-
-    .hint{
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 16px 24px;
-      color:var(--muted);
-      font-size:12px;
-      opacity:.9;
-    }
-
-    .dot{
-      color:var(--accent);
-      font-weight:700;
-    }
   </style>
 </head>
 
 <body>
 
   <div class="topbar">
-    <!-- adjust these links if you want -->
     <a href="../read.html">← Read</a>
     <a href="../../index.html">SweetRollStudios.com</a>
   </div>
 
   <div class="title">
-    <h1>Blackout States — Chapter 01</h1>
+    <h1>Blackout States — Chapter 1</h1>
     <p>Tap left/right (or swipe). Desktop: use ← → keys.</p>
   </div>
 
   <div class="reader">
     <div class="frame">
-      <div class="stage" id="stage" aria-label="Page viewer">
-        <div class="zone left" id="tapPrev" aria-label="Previous page"></div>
-        <div class="zone right" id="tapNext" aria-label="Next page"></div>
+      <div class="stage" id="stage">
+        <div class="zone left" id="tapPrev"></div>
+        <div class="zone right" id="tapNext"></div>
 
-        <div class="arrow left" id="btnPrev" title="Previous (←)"><span>‹</span></div>
-        <div class="arrow right" id="btnNext" title="Next (→)"><span>›</span></div>
+        <div class="arrow left" id="btnPrev" title="Previous (←)">
+          <span>‹</span>
+        </div>
 
-        <img id="pageImg" class="page-img" src="" alt="Chapter page">
+        <div class="arrow right" id="btnNext" title="Next (→)">
+          <span>›</span>
+        </div>
+
+        <img id="pageImg" class="page-img" src="" alt="Chapter Page">
       </div>
 
       <div class="bottom">
@@ -218,40 +207,33 @@
     </div>
   </div>
 
-  <div class="hint">
-    Tip: link to a page with <span class="dot">?p=5</span> (example: chap-1.html?p=5)
-  </div>
-
 <script>
 (() => {
-  // ======= CONFIG (MATCHES YOUR FOLDER) =======
-  // Your file is: blackout-states/chap-1.html
-  // Your images are in: blackout-states/chap-1/1.png ... 9.png
-  const BASE = "chap-1/";
-  const EXT  = "png";
+  // ✅ YOUR EXACT IMAGE PATH
+  // chapter-images / blackout-states / chapter-1 / 1.png ... 9.png
+  const BASE = "chapter-images/blackout-states/chapter-1/";
+  const EXT = "png";
   const TOTAL_PAGES = 9;
 
-  // ======= STATE =======
   const imgEl = document.getElementById("pageImg");
-  const meta  = document.getElementById("metaText");
+  const meta = document.getElementById("metaText");
 
   const firstBtn = document.getElementById("firstBtn");
-  const prevBtn  = document.getElementById("prevBtn");
-  const nextBtn  = document.getElementById("nextBtn");
-  const lastBtn  = document.getElementById("lastBtn");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const lastBtn = document.getElementById("lastBtn");
 
   const btnPrev = document.getElementById("btnPrev");
   const btnNext = document.getElementById("btnNext");
   const tapPrev = document.getElementById("tapPrev");
   const tapNext = document.getElementById("tapNext");
-  const stage   = document.getElementById("stage");
+  const stage = document.getElementById("stage");
 
-  // IMPORTANT: your filenames are 1.png, 2.png ... not 001.webp
   const pageSrc = (n) => `${BASE}${n}.${EXT}`;
 
   let page = 1;
 
-  // ======= URL PARAM (optional) =======
+  // optional: allow direct linking like chap-1.html?p=5
   const params = new URLSearchParams(location.search);
   const p = parseInt(params.get("p"), 10);
   if (!Number.isNaN(p) && p >= 1 && p <= TOTAL_PAGES) page = p;
@@ -262,22 +244,20 @@
     history.replaceState({}, "", u);
   }
 
-  // ======= PRELOAD =======
   function preload(n){
     if (n < 1 || n > TOTAL_PAGES) return;
     const i = new Image();
     i.src = pageSrc(n);
   }
 
-  // ======= RENDER =======
   function render(){
     imgEl.src = pageSrc(page);
-    imgEl.alt = `Chapter 01 — Page ${page}`;
+    imgEl.alt = `Blackout States — Chapter 1 — Page ${page}`;
 
     meta.textContent = `Page ${page} / ${TOTAL_PAGES}`;
 
-    prevBtn.disabled  = page === 1;
     firstBtn.disabled = page === 1;
+    prevBtn.disabled  = page === 1;
     nextBtn.disabled  = page === TOTAL_PAGES;
     lastBtn.disabled  = page === TOTAL_PAGES;
 
@@ -291,10 +271,10 @@
     page = Math.min(TOTAL_PAGES, Math.max(1, n));
     render();
   }
+
   function next(){ if (page < TOTAL_PAGES) go(page + 1); }
   function prev(){ if (page > 1) go(page - 1); }
 
-  // ======= EVENTS =======
   firstBtn.addEventListener("click", () => go(1));
   lastBtn.addEventListener("click", () => go(TOTAL_PAGES));
   prevBtn.addEventListener("click", prev);
@@ -311,7 +291,7 @@
     if (e.key === "ArrowLeft") prev();
   });
 
-  // swipe (mobile)
+  // swipe support
   let x0 = null;
   stage.addEventListener("touchstart", (e) => {
     x0 = e.touches[0].clientX;
